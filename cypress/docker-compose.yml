@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  api:
+    container_name: namelazy_api
+    image: avitorio/namelazy-api:latest
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_NAME: namelazy
+      STRIPE_KEY: 'sk_test_51IaUAPAsKoJ0UNhXIEQEf2quPb7yBhZtEheoYjnMT0QzxJGo1xUxCB1J6maxIiMVzkxr77AifvSm3WKL6DqTyBO700yARfUQd1'
+    ports:
+      - '1337:1337'
+    depends_on:
+      - db
+
+  db:
+    container_name: namelazy_db
+    image: avitorio/namelazy-db:latest
+    ports:
+      - '5432:5432'
