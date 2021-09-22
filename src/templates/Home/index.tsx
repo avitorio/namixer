@@ -1,4 +1,3 @@
-import io from 'socket.io-client'
 import { useEffect, useState } from 'react'
 import Base from 'templates/Base'
 import { Container } from 'components/Container'
@@ -11,17 +10,28 @@ import { domainList } from './example'
 import * as S from './styles'
 
 const Home = () => {
-  const [values, setValues] = useState({ word: '' })
+  const [searchData, setSearchData] = useState({
+    word: '',
+    type: 'alphabet',
+    order: 'start',
+    size: '1'
+  })
 
   const handleInput = (field: string, value: string) => {
-    setValues((s) => ({ ...s, [field]: value }))
+    setSearchData((s) => ({ ...s, [field]: value }))
   }
   const onClick = () => {
-    console.log('yo')
-    socket.emit('what', values, (error) => {
-      console.log(values.word)
+    socket.emit('search', JSON.stringify(searchData), (error) => {
+      if (error) {
+        alert(error)
+      } else {
+        socket.on('result', (data) => {
+          console.log(data)
+        })
+      }
     })
   }
+
   return (
     <Base>
       <Container>
