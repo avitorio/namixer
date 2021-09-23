@@ -10,9 +10,10 @@ import { domainList } from './example'
 import * as S from './styles'
 
 const Home = () => {
+  const [results, setResults] = useState([{ domain: 'glll.com' }])
   const [searchData, setSearchData] = useState({
     word: '',
-    type: 'alphabet',
+    type: 'wordsplus',
     order: 'start',
     size: '1'
   })
@@ -21,16 +22,20 @@ const Home = () => {
     setSearchData((s) => ({ ...s, [field]: value }))
   }
   const onClick = () => {
-    socket.emit('search', JSON.stringify(searchData), (error) => {
+    setResults([])
+    socket.emit('search', JSON.stringify(searchData), (error: Error) => {
       if (error) {
         alert(error)
-      } else {
-        socket.on('result', (data) => {
-          console.log(data)
-        })
       }
     })
   }
+
+  useEffect(() => {
+    socket.on('result', (data) => {
+      const resData = JSON.parse(data)
+      setResults((results) => [...results, resData])
+    })
+  }, [])
 
   return (
     <Base>
@@ -55,13 +60,17 @@ const Home = () => {
             </Button>
           </S.MainSearch>
           <ul>
-            {domainList.map(
-              (result: { domain: string; isAvailable: boolean }) => (
-                <li key={result.domain}>
-                  <a href="https://google.com">{result.domain}</a>
-                </li>
-              )
-            )}
+            {results.map((result) => {
+              if (result.domain) {
+                return (
+                  <li key={result.domain}>
+                    <div>
+                      <strong>{result.domain}</strong>
+                    </div>
+                  </li>
+                )
+              }
+            })}
           </ul>
         </S.Wrapper>
       </Container>
