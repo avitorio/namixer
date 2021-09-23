@@ -5,8 +5,6 @@ import SearchField from 'components/SearchField'
 import Button from 'components/Button'
 import { socket } from '../../config/web-sockets'
 
-import { domainList } from './example'
-
 import * as S from './styles'
 
 const Home = () => {
