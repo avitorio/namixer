@@ -1,38 +1,36 @@
-import { screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from 'utils/test-utils'
 import userEvent from '@testing-library/user-event'
 import { Email } from '@styled-icons/material-outlined'
-
-import { renderWithTheme } from 'utils/tests/helpers'
 
 import SearchField from '.'
 
 describe('<SearchField />', () => {
   it('Renders with Label', () => {
-    renderWithTheme(<SearchField label="Label" name="Label" />)
+    render(<SearchField label="Label" name="Label" />)
 
     expect(screen.getByLabelText('Label')).toBeInTheDocument()
   })
 
   it('Renders without Label', () => {
-    renderWithTheme(<SearchField />)
+    render(<SearchField />)
 
     expect(screen.queryByLabelText('Label')).not.toBeInTheDocument()
   })
 
   it('Renders with placeholder', () => {
-    renderWithTheme(<SearchField placeholder="hey you" />)
+    render(<SearchField placeholder="hey you" />)
 
     expect(screen.getByPlaceholderText('hey you')).toBeInTheDocument()
   })
 
   it('Renders with Icon', () => {
-    renderWithTheme(<SearchField icon={<Email data-testid="icon" />} />)
+    render(<SearchField icon={<Email data-testid="icon" />} />)
 
     expect(screen.getByTestId('icon')).toBeInTheDocument()
   })
 
   it('Renders with Icon on the right side', () => {
-    renderWithTheme(
+    render(
       <SearchField icon={<Email data-testid="icon" />} iconPosition="right" />
     )
 
@@ -41,7 +39,7 @@ describe('<SearchField />', () => {
 
   it('Changes its value when typing', async () => {
     const onInput = jest.fn()
-    renderWithTheme(
+    render(
       <SearchField onInput={onInput} label="SearchField" name="SearchField" />
     )
 
@@ -58,7 +56,7 @@ describe('<SearchField />', () => {
 
   it('Does not changes its value when disabled', async () => {
     const onInput = jest.fn()
-    renderWithTheme(
+    render(
       <SearchField
         onInput={onInput}
         label="SearchField"
@@ -80,7 +78,7 @@ describe('<SearchField />', () => {
   })
 
   it('Renders with error', () => {
-    const { container } = renderWithTheme(
+    const { container } = render(
       <SearchField
         icon={<Email data-testid="icon" />}
         label="SearchField"
@@ -94,7 +92,7 @@ describe('<SearchField />', () => {
   })
 
   it('Is accessible by tab', () => {
-    renderWithTheme(<SearchField label="SearchField" name="SearchField" />)
+    render(<SearchField label="SearchField" name="SearchField" />)
 
     const input = screen.getByLabelText('SearchField')
     expect(document.body).toHaveFocus()
@@ -104,9 +102,7 @@ describe('<SearchField />', () => {
   })
 
   it('Is not accessible by tab when disabled', () => {
-    renderWithTheme(
-      <SearchField label="SearchField" name="SearchField" disabled />
-    )
+    render(<SearchField label="SearchField" name="SearchField" disabled />)
 
     const input = screen.getByLabelText('SearchField')
     expect(document.body).toHaveFocus()

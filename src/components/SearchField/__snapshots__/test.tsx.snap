@@ -19,17 +19,17 @@ exports[`<SearchField /> Renders with error 1`] = `
   background: #F4F6F9;
   border-radius: 0.8rem;
   padding: 0 1.6rem;
-  height: 3.6rem;
+  height: 6.4rem;
 }
 
 .c4:focus-within {
-  box-shadow: 0 0 0.5rem #34C1FF;
+  box-shadow: 0 0 0.5rem #E65A6D;
 }
 
 .c8 {
   color: #030517;
   font-family: Source Sans Pro,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;
-  font-size: 1.4rem;
+  font-size: 2.8rem;
   padding: 0.8rem 0;
   padding-left: 1.6rem;
   background: transparent;
@@ -79,7 +79,7 @@ exports[`<SearchField /> Renders with error 1`] = `
 
 @media (min-width:1170px) {
   .c4 {
-    width: 264px;
+    width: 718px;
   }
 }
 
