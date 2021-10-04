@@ -19,3 +19,10 @@ export default {
 export const Default: Story<DomainSearchProps> = (args) => (
   <DomainSearch {...args} />
 )
+
+export const WithInitialValues: Story<DomainSearchProps> = (args) => (
+  <DomainSearch
+    {...args}
+    initialValues={{ type: 'alphabet', order: 'suffix' }}
+  />
+)
