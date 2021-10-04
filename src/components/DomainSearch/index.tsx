@@ -3,6 +3,7 @@ import Button from 'components/Button'
 import Radio from 'components/Radio'
 import SearchField from 'components/SearchField'
 import * as S from './styles'
+import { SearchValues } from 'templates/Home'
 
 export type ItemProps = {
   title: string
@@ -17,35 +18,37 @@ type Field = {
   name: string
 }
 
-type Values = {
-  [field: string]: boolean | string
-}
-
 export type DomainSearchProps = {
   items: ItemProps[]
-  initialValues?: Values
-  onFilter: (values: Values) => void
+  initialValues?: SearchValues
+  onSubmit: (values: SearchValues) => void
 }
 
 const DomainSearch = ({
   items,
-  onFilter,
+  onSubmit,
   initialValues = {}
 }: DomainSearchProps) => {
-  const [values, setValues] = useState(initialValues)
+  const [values, setValues] = useState<SearchValues>(initialValues)
 
   const handleChange = (name: string, value: string | boolean) => {
     setValues((s) => ({ ...s, [name]: value }))
   }
 
   const handleFilter = () => {
-    onFilter(values)
+    console.log(values)
+    onSubmit(values)
   }
 
   return (
     <S.Wrapper>
       <S.MainSearch>
-        <SearchField name="word" placeholder="Type in a word" type="text" />
+        <SearchField
+          name="word"
+          placeholder="Type in a word"
+          type="text"
+          onInput={(v) => handleChange('word', v)}
+        />
         <Button size="xlarge" onClick={handleFilter}>
           Search Domains
         </Button>

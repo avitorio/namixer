@@ -1,27 +1,26 @@
 import { useEffect, useState } from 'react'
 import Base from 'templates/Base'
 import { Container } from 'components/Container'
-import SearchField from 'components/SearchField'
-import Button from 'components/Button'
 import { socket } from '../../config/web-sockets'
+
+import DomainSearch, { ItemProps } from 'components/DomainSearch'
 
 import * as S from './styles'
 
-const Home = () => {
-  const [results, setResults] = useState([{ domain: 'glll.com' }])
-  const [searchData, setSearchData] = useState({
-    word: '',
-    type: 'wordsplus',
-    order: 'start',
-    size: '1'
-  })
+export type HomeTemplateProps = {
+  filterItems: ItemProps[]
+}
 
-  const handleInput = (field: string, value: string) => {
-    setSearchData((s) => ({ ...s, [field]: value }))
-  }
-  const onClick = () => {
+export type SearchValues = {
+  [field: string]: boolean | string
+}
+
+const HomeTemplate = ({ filterItems = [] }: HomeTemplateProps) => {
+  const [results, setResults] = useState([{ domain: 'glll.com' }])
+
+  const onSubmit = (values: SearchValues) => {
     setResults([])
-    socket.emit('search', JSON.stringify(searchData), (error: Error) => {
+    socket.emit('search', JSON.stringify(values), (error: Error) => {
       if (error) {
         alert(error)
       }
@@ -46,17 +45,22 @@ const Home = () => {
           ) : (
             <div>Not Connected</div>
           )}
-          <S.MainSearch>
+          {/* <S.MainSearch>
             <SearchField
               name="word"
               placeholder="Type in a word"
               type="text"
               onInput={(v) => handleInput('word', v)}
             />
-            <Button size="xlarge" onClick={onClick}>
+            <Button size="xlarge" onSubmit={onSubmit}>
               Search Domains
             </Button>
-          </S.MainSearch>
+          </S.MainSearch> */}
+          <DomainSearch
+            items={filterItems}
+            initialValues={{ type: 'alphabet', order: 'suffix' }}
+            onSubmit={onSubmit}
+          />
           <ul>
             {results.map((result) => {
               if (result.domain) {
@@ -76,4 +80,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomeTemplate

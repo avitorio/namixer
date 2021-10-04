@@ -7,7 +7,7 @@ import items from './mock'
 
 describe('<DomainSearch />', () => {
   it('should render the search bar and button', () => {
-    render(<DomainSearch items={items} onFilter={jest.fn} />)
+    render(<DomainSearch items={items} onSubmit={jest.fn} />)
 
     expect(screen.getByPlaceholderText(/type in a word/i)).toBeInTheDocument()
     expect(
@@ -16,7 +16,7 @@ describe('<DomainSearch />', () => {
   })
 
   it('should render the search options', () => {
-    render(<DomainSearch items={items} onFilter={jest.fn} />)
+    render(<DomainSearch items={items} onSubmit={jest.fn} />)
 
     expect(screen.getByRole('radio', { name: /alphabet/i })).toBeInTheDocument()
   })
@@ -26,7 +26,7 @@ describe('<DomainSearch />', () => {
       <DomainSearch
         items={items}
         initialValues={{ type: 'alphabet' }}
-        onFilter={jest.fn}
+        onSubmit={jest.fn}
       />
     )
 
@@ -34,24 +34,24 @@ describe('<DomainSearch />', () => {
   })
 
   it('should return domains on search', () => {
-    const onFilter = jest.fn()
+    const onSubmit = jest.fn()
 
-    render(<DomainSearch items={items} onFilter={onFilter} />)
+    render(<DomainSearch items={items} onSubmit={onSubmit} />)
 
     userEvent.click(screen.getByLabelText(/alphabet/i))
     userEvent.click(screen.getByLabelText(/suffix/i))
 
     userEvent.click(screen.getByRole('button', { name: /search domains/i }))
-    expect(onFilter).toBeCalledWith({ type: 'alphabet', order: 'suffix' })
+    expect(onSubmit).toBeCalledWith({ type: 'alphabet', order: 'suffix' })
   })
 
   it('should make radio button changes', () => {
-    const onFilter = jest.fn()
+    const onSubmit = jest.fn()
 
     render(
       <DomainSearch
         items={items}
-        onFilter={onFilter}
+        onSubmit={onSubmit}
         initialValues={{ type: 'alphabet', order: 'suffix' }}
       />
     )
@@ -59,6 +59,6 @@ describe('<DomainSearch />', () => {
     userEvent.click(screen.getByLabelText(/prefix/i))
 
     userEvent.click(screen.getByRole('button', { name: /search domains/i }))
-    expect(onFilter).toBeCalledWith({ type: 'alphabet', order: 'prefix' })
+    expect(onSubmit).toBeCalledWith({ type: 'alphabet', order: 'prefix' })
   })
 })

@@ -26,12 +26,12 @@ export default [
     type: 'radio',
     fields: [
       {
-        label: 'Suffix',
-        name: 'suffix'
-      },
-      {
         label: 'Prefix',
         name: 'prefix'
+      },
+      {
+        label: 'Suffix',
+        name: 'suffix'
       }
     ]
   }
