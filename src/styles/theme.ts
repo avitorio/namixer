@@ -39,18 +39,18 @@ export default {
       primary900: '#E65A6DE6',
       primary1000: '#E65A6D'
     },
-    secondary: '#C240FF',
+    secondary: '#C9FCC1',
     secondaryColor: {
-      secondary100: '#C240FF1A',
-      secondary200: '#C240FF33',
-      secondary300: '#C240FF4D',
-      secondary400: '#C240FF66',
-      secondary500: '#C240FF80',
-      secondary600: '#C240FF99',
-      secondary700: '#C240FFB3',
-      secondary800: '#C240FFCC',
-      secondary900: '#C240FFE6',
-      secondary1000: '#C240FF'
+      secondary100: '#C9FCC11A',
+      secondary200: '#C9FCC133',
+      secondary300: '#C9FCC14D',
+      secondary400: '#C9FCC166',
+      secondary500: '#C9FCC180',
+      secondary600: '#C9FCC199',
+      secondary700: '#C9FCC1B3',
+      secondary800: '#C9FCC1CC',
+      secondary900: '#C9FCC1E6',
+      secondary1000: '#C9FCC1'
     },
     mainBg: '#030517',
     lightBg: '#34C1FF66',
@@ -81,7 +81,7 @@ export default {
   },
   accentColors: {
     blue: '#2E8EF7',
-    green: '#19AB4F',
+    green: '#44cc44',
     orange: '#FFC371',
     pink: '#FF409A',
     purple: '#C341FF'

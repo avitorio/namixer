@@ -14,7 +14,7 @@ exports[`<Footer /> should render 4 column topics 1`] = `
   bottom: -0.5rem;
   content: '';
   width: 5rem;
-  border-bottom: 0.5rem solid #C240FF;
+  border-bottom: 0.5rem solid #C9FCC1;
 }
 
 .c5::after {
@@ -281,4 +281,4 @@ exports[`<Footer /> should render 4 column topics 1`] = `
      © All rights reserved.
   </div>
 </footer>
-`;
+`

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Button from 'components/Button'
-import Radio from 'components/Radio'
+import RadioButton from 'components/RadioButton'
 import SearchField from 'components/SearchField'
 import * as S from './styles'
 import { SearchValues } from 'templates/Home'
@@ -53,23 +53,25 @@ const DomainSearch = ({
           Search Domains
         </Button>
       </S.MainSearch>
-      {items.map((item) => (
-        <div key={item.title}>
-          <span>{item.title}</span>
-          {item.fields.map((field) => (
-            <Radio
-              key={field.name}
-              id={field.name}
-              name={item.name}
-              label={field.label}
-              labelFor={field.name}
-              value={field.name}
-              defaultChecked={field.name === values[item.name]}
-              onChange={() => handleChange(item.name, field.name)}
-            />
-          ))}
-        </div>
-      ))}
+      <S.SearchOptions>
+        {items.map((item) => (
+          <S.OptionsWrapper key={item.title}>
+            <span>{item.title}</span>
+            {item.fields.map((field) => (
+              <RadioButton
+                key={field.name}
+                id={field.name}
+                name={item.name}
+                label={field.label}
+                labelFor={field.name}
+                value={field.name}
+                defaultChecked={field.name === values[item.name]}
+                onChange={() => handleChange(item.name, field.name)}
+              />
+            ))}
+          </S.OptionsWrapper>
+        ))}
+      </S.SearchOptions>
     </S.Wrapper>
   )
 }

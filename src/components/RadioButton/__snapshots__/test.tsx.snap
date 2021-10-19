@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RadioButton /> should render with label (white) 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1 {
+  opacity: 0;
+  position: fixed;
+  width: 0px;
+}
+
+.c1:checked + label {
+  border: 2px solid #44cc44;
+  background: #C9FCC1;
+}
+
+.c2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #F4F6F9;
+  border: 2px solid #ffffff00;
+  border-radius: 0.4rem;
+  color: #2C3A4B;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-family: Source Sans Pro,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;
+  font-weight: 600;
+  padding: 1.6rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.c2:hover {
+  background: #f3fef2;
+}
+
+<div
+  class="c0"
+>
+  <input
+    class="c1"
+    id="check"
+    type="radio"
+    value="anyValue"
+  />
+  <label
+    class="c2"
+    for="check"
+  >
+    RadioButton
+  </label>
+</div>
+`
