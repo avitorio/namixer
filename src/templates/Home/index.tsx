@@ -12,7 +12,7 @@ export type HomeTemplateProps = {
 }
 
 export type SearchValues = {
-  [field: string]: boolean | string
+  [field: string]: string
 }
 
 const HomeTemplate = ({ filterItems = [] }: HomeTemplateProps) => {
@@ -56,11 +56,7 @@ const HomeTemplate = ({ filterItems = [] }: HomeTemplateProps) => {
               Search Domains
             </Button>
           </S.MainSearch> */}
-          <DomainSearch
-            items={filterItems}
-            initialValues={{ type: 'alphabet', order: 'suffix' }}
-            onSubmit={onSubmit}
-          />
+          <DomainSearch items={filterItems} onSubmit={onSubmit} />
           <ul>
             {results.map((result) => {
               if (result.domain) {

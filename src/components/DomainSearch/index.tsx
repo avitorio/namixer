@@ -2,15 +2,21 @@ import { useState } from 'react'
 import Button from 'components/Button'
 import RadioButton from 'components/RadioButton'
 import SearchField from 'components/SearchField'
-import * as S from './styles'
 import { SearchValues } from 'templates/Home'
+
+import * as S from './styles'
+import Select from 'components/Select'
 
 export type ItemProps = {
   title: string
   titleAfter?: string
   type: string
   name: string
-  fields: Field[]
+  fields:
+    | Field[]
+    | {
+        [field: string]: Field[]
+      }
 }
 
 type Field = {
@@ -24,14 +30,20 @@ export type DomainSearchProps = {
   onSubmit: (values: SearchValues) => void
 }
 
+export const initialSearchValues = {
+  type: 'alphabet',
+  order: 'suffix',
+  size: '1'
+}
+
 const DomainSearch = ({
   items,
   onSubmit,
-  initialValues = {}
+  initialValues = initialSearchValues
 }: DomainSearchProps) => {
   const [values, setValues] = useState<SearchValues>(initialValues)
 
-  const handleChange = (name: string, value: string | boolean) => {
+  const handleChange = (name: string, value: string) => {
     setValues((s) => ({ ...s, [name]: value }))
   }
 
@@ -56,19 +68,44 @@ const DomainSearch = ({
       <S.SearchOptions>
         {items.map((item) => (
           <S.OptionsWrapper key={item.title}>
-            <span>{item.title}</span>
-            {item.fields.map((field) => (
-              <RadioButton
-                key={field.name}
-                id={field.name}
-                name={item.name}
-                label={field.label}
-                labelFor={field.name}
-                value={field.name}
-                defaultChecked={field.name === values[item.name]}
-                onChange={() => handleChange(item.name, field.name)}
-              />
-            ))}
+            {item.type === 'radio' && Array.isArray(item.fields) ? (
+              <>
+                <span>{item.title}</span>
+                {item.fields.map((field) => (
+                  <RadioButton
+                    key={field.name}
+                    id={field.name}
+                    name={item.name}
+                    label={field.label}
+                    labelFor={field.name}
+                    value={field.name}
+                    defaultChecked={field.name === values[item.name]}
+                    onChange={() => handleChange(item.name, field.name)}
+                  />
+                ))}
+                {item.titleAfter && <span>{item.titleAfter}</span>}
+              </>
+            ) : (
+              values.type !== 'topWords' &&
+              !Array.isArray(item.fields) && (
+                <>
+                  <span>{item.title}</span>
+                  <Select
+                    id={item.name}
+                    name={item.name}
+                    aria-label={item.name}
+                    onChange={(e) => handleChange(item.name, e.target.value)}
+                  >
+                    {item.fields[values.type].map((value) => (
+                      <option key={value.name} value={value.name}>
+                        {value.label}
+                      </option>
+                    ))}
+                  </Select>
+                  <span>{item.titleAfter}</span>
+                </>
+              )
+            )}
           </S.OptionsWrapper>
         ))}
       </S.SearchOptions>
