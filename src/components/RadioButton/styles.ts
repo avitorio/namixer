@@ -22,7 +22,7 @@ export const Input = styled.input`
 export const Label = styled.label`
   ${({ theme }) => css`
     align-items: center;
-    background: ${theme.colors.neutral.neutral100};
+    background-color: ${theme.colors.neutral.neutral100};
     border: 2px solid #ffffff00;
     border-radius: ${theme.border.radius.small};
     color: ${theme.colors.neutral.neutral900};
@@ -36,7 +36,7 @@ export const Label = styled.label`
     white-space: nowrap;
 
     &:hover {
-      background: ${lighten(0.1, theme.colors.secondary)};
+      background-color: ${lighten(0.05, theme.colors.secondary)};
     }
   `}
 `

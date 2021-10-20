@@ -1,9 +1,9 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import Radio, { RadioButtonProps } from '.'
+import RadioButton, { RadioButtonProps } from '.'
 
 export default {
-  title: 'Form/Radio',
-  component: Radio,
+  title: 'Form/RadioButton',
+  component: RadioButton,
   parameters: {
     layout: 'fullscreen',
     backgrounds: {
@@ -18,7 +18,7 @@ export default {
 export const Default: Story<RadioButtonProps> = (args) => (
   <>
     <div style={{ padding: 10 }}>
-      <Radio
+      <RadioButton
         label="primeiro"
         labelFor="primeiro"
         id="primeiro"
@@ -29,7 +29,7 @@ export const Default: Story<RadioButtonProps> = (args) => (
       />
     </div>
     <div style={{ padding: 10 }}>
-      <Radio
+      <RadioButton
         label="segundo"
         labelFor="segundo"
         id="segundo"
@@ -39,7 +39,7 @@ export const Default: Story<RadioButtonProps> = (args) => (
       />
     </div>
     <div style={{ padding: 10 }}>
-      <Radio
+      <RadioButton
         label="terceiro"
         labelFor="terceiro"
         id="terceiro"

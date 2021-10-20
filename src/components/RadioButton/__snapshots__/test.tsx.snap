@@ -28,7 +28,7 @@ exports[`<RadioButton /> should render with label (white) 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #F4F6F9;
+  background-color: #F4F6F9;
   border: 2px solid #ffffff00;
   border-radius: 0.4rem;
   color: #2C3A4B;
@@ -50,7 +50,7 @@ exports[`<RadioButton /> should render with label (white) 1`] = `
 }
 
 .c2:hover {
-  background: #f3fef2;
+  background-color: #defdd9;
 }
 
 <div
