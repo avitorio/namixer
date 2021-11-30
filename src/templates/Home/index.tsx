@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import Base from 'templates/Base'
 import { Container } from 'components/Container'
-import { socket } from '../../config/web-sockets'
+import { socket } from 'config/web-sockets'
+import { useSession } from 'next-auth/client'
 
 import DomainSearch, { ItemProps } from 'components/DomainSearch'
 
@@ -12,11 +13,20 @@ export type HomeTemplateProps = {
 }
 
 export type SearchValues = {
-  [field: string]: string
+  [field: string]: string | number
+}
+
+export type SearchResults = {
+  domain: string
 }
 
 const HomeTemplate = ({ filterItems = [] }: HomeTemplateProps) => {
-  const [results, setResults] = useState([{ domain: 'glll.com' }])
+  const [results, setResults] = useState<SearchResults[]>([
+    { domain: 'google.com' }
+  ])
+  const [session, loading] = useSession()
+
+  // @TODO: Create uuid for each search to avoid old searches showing up
 
   const onSubmit = (values: SearchValues) => {
     setResults([])
@@ -30,32 +40,38 @@ const HomeTemplate = ({ filterItems = [] }: HomeTemplateProps) => {
   useEffect(() => {
     socket.on('result', (data) => {
       const resData = JSON.parse(data)
-      setResults((results) => [...results, resData])
+      setResults((results) => {
+        const found = results.find((result) => result.domain === resData.domain)
+        if (found) {
+          return results
+        }
+        if (!session?.user?.name && results.length >= 10) {
+          return results
+        }
+
+        return [...results, resData]
+      })
     })
-  }, [])
+  }, [session])
+
+  useEffect(() => {
+    if (!loading) {
+      socket.emit(
+        'authenticate',
+        JSON.stringify({ token: session?.jwt, username: session?.user?.name }),
+        (error: Error) => {
+          if (error) {
+            alert(error)
+          }
+        }
+      )
+    }
+  }, [loading, session])
 
   return (
     <Base>
       <Container>
         <S.Wrapper>
-          {socket ? (
-            <div className="chat-container">
-              <h1>Connected</h1>
-            </div>
-          ) : (
-            <div>Not Connected</div>
-          )}
-          {/* <S.MainSearch>
-            <SearchField
-              name="word"
-              placeholder="Type in a word"
-              type="text"
-              onInput={(v) => handleInput('word', v)}
-            />
-            <Button size="xlarge" onSubmit={onSubmit}>
-              Search Domains
-            </Button>
-          </S.MainSearch> */}
           <DomainSearch items={filterItems} onSubmit={onSubmit} />
           <ul>
             {results.map((result) => {
@@ -69,6 +85,9 @@ const HomeTemplate = ({ filterItems = [] }: HomeTemplateProps) => {
                 )
               }
             })}
+            {results.length > 0 && !session?.user?.name && (
+              <h1>Register for more results</h1>
+            )}
           </ul>
         </S.Wrapper>
       </Container>

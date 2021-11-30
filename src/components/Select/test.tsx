@@ -21,10 +21,14 @@ describe('<Select />', () => {
   it('should dispatch onCheck when option changes', async () => {
     const onCheck = jest.fn()
     render(
-      <Select id="Select" name="Select" data-testid="select" onChange={onCheck}>
-        <option value="1" selected>
-          A
-        </option>
+      <Select
+        id="Select"
+        name="Select"
+        data-testid="select"
+        onChange={onCheck}
+        defaultValue="1"
+      >
+        <option value="1">A</option>
         <option value="2">B</option>
       </Select>
     )

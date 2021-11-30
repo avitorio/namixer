@@ -33,7 +33,8 @@ export type DomainSearchProps = {
 export const initialSearchValues = {
   type: 'alphabet',
   order: 'suffix',
-  size: '1'
+  size: '1',
+  line: 0
 }
 
 const DomainSearch = ({
@@ -48,7 +49,6 @@ const DomainSearch = ({
   }
 
   const handleFilter = () => {
-    console.log(values)
     onSubmit(values)
   }
 
