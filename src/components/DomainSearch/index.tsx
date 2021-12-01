@@ -31,7 +31,7 @@ export type DomainSearchProps = {
 }
 
 export const initialSearchValues = {
-  type: 'alphabet',
+  type: 'topWords',
   order: 'suffix',
   size: '1',
   line: 0

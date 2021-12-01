@@ -6,12 +6,12 @@ export default [
     type: 'radio',
     fields: [
       {
-        label: 'Alphabet',
-        name: 'alphabet'
-      },
-      {
         label: 'Popular Words',
         name: 'topWords'
+      },
+      {
+        label: 'Alphabet',
+        name: 'alphabet'
       },
       {
         label: 'Dictionary',

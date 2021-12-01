@@ -24,7 +24,7 @@ describe('<DomainSearch />', () => {
   it('should check initial values are passed', () => {
     render(<DomainSearch items={items} onSubmit={jest.fn} />)
 
-    expect(screen.getByRole('radio', { name: /alphabet/i })).toBeChecked()
+    expect(screen.getByLabelText(/popular words/i)).toBeChecked()
   })
 
   it('should return domains on search', () => {
@@ -65,7 +65,7 @@ describe('<DomainSearch />', () => {
     userEvent.click(screen.getByRole('button', { name: /search domains/i }))
     expect(onSubmit).toBeCalledWith({
       ...initialSearchValues,
-      type: 'alphabet',
+      type: 'topWords',
       order: 'prefix'
     })
   })
