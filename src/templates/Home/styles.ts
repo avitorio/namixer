@@ -23,3 +23,28 @@ export const MainSearch = styled.section`
     `}
   `}
 `
+
+export const Results = styled.ul`
+  margin-top: ${({ theme }) => theme.spacings.large};
+  max-width: 96rem;
+  width: 100%;
+
+  li {
+    list-style: none;
+    margin-bottom: ${({ theme }) => theme.spacings.small};
+  }
+`
+
+export const Domain = styled.a`
+  height: 68px;
+  left: 242px;
+  top: 574px;
+  color: #000;
+  background: #ffffff;
+  border-radius: 8px;
+  max-width: 96rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 24px;
+`

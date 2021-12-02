@@ -21,38 +21,70 @@ export type SearchResults = {
 }
 
 const HomeTemplate = ({ filterItems = [] }: HomeTemplateProps) => {
-  const [results, setResults] = useState<SearchResults[]>([
-    { domain: 'google.com' }
-  ])
+  const [results, setResults] = useState<SearchResults[]>([])
   const [session, loading] = useSession()
-
-  // @TODO: Create uuid for each search to avoid old searches showing up
+  const [searchId, setSearchId] = useState(1)
+  const [searching, setSearching] = useState(false)
+  const [currentlySearching, setCurrentlySearching] = useState('')
 
   const onSubmit = (values: SearchValues) => {
+    socket.disconnect()
     setResults([])
-    socket.emit('search', JSON.stringify(values), (error: Error) => {
-      if (error) {
-        alert(error)
+    setSearchId(searchId + 1)
+    setSearching(true)
+    socket.connect()
+    socket.emit(
+      'search',
+      JSON.stringify({ ...values, username: session?.user?.name, searchId }),
+      (error: Error) => {
+        if (error) {
+          alert(error)
+        }
       }
-    })
+    )
   }
 
   useEffect(() => {
+    socket.on('searching', (data) => {
+      const resData = JSON.parse(data)
+      if (resData.searchId !== searchId) {
+        return
+      }
+      setCurrentlySearching(resData.domain)
+    })
+
     socket.on('result', (data) => {
       const resData = JSON.parse(data)
+
+      console.log(resData)
+
+      if (resData.lastLine) {
+        setSearching(false)
+        setCurrentlySearching('')
+        return
+      }
+
+      if (resData.searchId !== searchId) {
+        return
+      }
+
       setResults((results) => {
+        setSearching(false)
+        setCurrentlySearching('')
         const found = results.find((result) => result.domain === resData.domain)
+        console.log(results)
         if (found) {
           return results
         }
         if (!session?.user?.name && results.length >= 10) {
+          socket.disconnect()
           return results
         }
 
         return [...results, resData]
       })
     })
-  }, [session])
+  }, [session, searchId])
 
   useEffect(() => {
     if (!loading) {
@@ -72,15 +104,28 @@ const HomeTemplate = ({ filterItems = [] }: HomeTemplateProps) => {
     <Base>
       <Container>
         <S.Wrapper>
-          <DomainSearch items={filterItems} onSubmit={onSubmit} />
-          <ul>
+          <DomainSearch
+            items={filterItems}
+            onSubmit={onSubmit}
+            searching={searching}
+          />
+          <span>
+            {currentlySearching !== '' &&
+              `Currently searching: ${currentlySearching}`}
+          </span>
+          {results.length > 0 && (
+            <span>{`Found ${results.length} available domains!`}</span>
+          )}
+          <S.Results>
             {results.map((result) => {
               if (result.domain) {
                 return (
                   <li key={result.domain}>
-                    <div>
-                      <strong>{result.domain}</strong>
-                    </div>
+                    <S.Domain>
+                      <div>
+                        <strong>{result.domain}</strong>
+                      </div>
+                    </S.Domain>
                   </li>
                 )
               }
@@ -88,7 +133,7 @@ const HomeTemplate = ({ filterItems = [] }: HomeTemplateProps) => {
             {results.length > 0 && !session?.user?.name && (
               <h1>Register for more results</h1>
             )}
-          </ul>
+          </S.Results>
         </S.Wrapper>
       </Container>
     </Base>
