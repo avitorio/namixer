@@ -86,8 +86,6 @@ describe('<SearchField />', () => {
       />
     )
 
-    expect(screen.getByText('Error message')).toBeInTheDocument()
-
     expect(container.firstChild).toMatchSnapshot()
   })
 

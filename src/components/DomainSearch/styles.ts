@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 import { lighten } from 'polished'
 
+import * as ButtonStyles from 'components/Button/styles'
+
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -23,8 +25,13 @@ export const MainSearch = styled.section`
       max-width: 96rem;
       width: 100%;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
+      gap: ${theme.spacings.small};
+
+      ${ButtonStyles.Wrapper} {
+        width: 100%;
+      }
     `}
   `}
 `

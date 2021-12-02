@@ -18,6 +18,7 @@ exports[`<SearchField /> Renders with error 1`] = `
   align-items: center;
   background: #F4F6F9;
   border-radius: 0.8rem;
+  border: 0.2rem solid;
   padding: 0 1.6rem;
   height: 6.4rem;
 }
@@ -59,11 +60,6 @@ exports[`<SearchField /> Renders with error 1`] = `
   width: 2.2rem;
 }
 
-.c9 {
-  color: #FF6347;
-  font-size: 1.2rem;
-}
-
 .c0 {
   width: 100%;
 }
@@ -79,7 +75,7 @@ exports[`<SearchField /> Renders with error 1`] = `
 
 @media (min-width:1170px) {
   .c4 {
-    width: 718px;
+    width: 71.8rem;
   }
 }
 
@@ -91,7 +87,7 @@ exports[`<SearchField /> Renders with error 1`] = `
 
 @media (min-width:1170px) {
   .c0 {
-    width: 264px;
+    width: 71.8rem;
   }
 }
 
@@ -133,10 +129,5 @@ exports[`<SearchField /> Renders with error 1`] = `
       value=""
     />
   </div>
-  <p
-    class="c9"
-  >
-    Error message
-  </p>
 </div>
 `

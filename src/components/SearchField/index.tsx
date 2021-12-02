@@ -49,7 +49,6 @@ const SearchField = ({
           {...props}
         />
       </S.InputWrapper>
-      {!!error && <S.Error>{error}</S.Error>}
     </S.Wrapper>
   )
 }

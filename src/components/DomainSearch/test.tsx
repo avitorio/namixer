@@ -34,17 +34,15 @@ describe('<DomainSearch />', () => {
       <DomainSearch
         items={items}
         onSubmit={onSubmit}
-        initialValues={initialSearchValues}
+        initialValues={{ ...initialSearchValues, word: 'keyword' }}
       />
     )
-
-    userEvent.click(screen.getByLabelText(/alphabet/i))
-    userEvent.click(screen.getByLabelText(/suffix/i))
 
     userEvent.click(screen.getByRole('button', { name: /search domains/i }))
     expect(onSubmit).toBeCalledWith({
       ...initialSearchValues,
-      type: 'alphabet',
+      word: 'keyword',
+      type: 'topWords',
       order: 'suffix'
     })
   })
@@ -56,7 +54,7 @@ describe('<DomainSearch />', () => {
       <DomainSearch
         items={items}
         onSubmit={onSubmit}
-        initialValues={initialSearchValues}
+        initialValues={{ ...initialSearchValues, word: 'keyword' }}
       />
     )
 
@@ -65,6 +63,7 @@ describe('<DomainSearch />', () => {
     userEvent.click(screen.getByRole('button', { name: /search domains/i }))
     expect(onSubmit).toBeCalledWith({
       ...initialSearchValues,
+      word: 'keyword',
       type: 'topWords',
       order: 'prefix'
     })

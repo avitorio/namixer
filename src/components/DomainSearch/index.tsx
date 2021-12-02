@@ -6,6 +6,7 @@ import { SearchValues } from 'templates/Home'
 
 import * as S from './styles'
 import Select from 'components/Select'
+import { FormLoading } from 'components/Form'
 
 export type ItemProps = {
   title: string
@@ -28,9 +29,11 @@ export type DomainSearchProps = {
   items: ItemProps[]
   initialValues?: SearchValues
   onSubmit: (values: SearchValues) => void
+  searching?: boolean
 }
 
 export const initialSearchValues = {
+  word: '',
   type: 'topWords',
   order: 'suffix',
   size: '1',
@@ -40,16 +43,41 @@ export const initialSearchValues = {
 const DomainSearch = ({
   items,
   onSubmit,
-  initialValues = initialSearchValues
+  initialValues = initialSearchValues,
+  searching = false
 }: DomainSearchProps) => {
   const [values, setValues] = useState<SearchValues>(initialValues)
+  const [error, setError] = useState('')
+  const [placeholderText, setPlaceholderText] = useState(
+    'Type in a word, ex: magical'
+  )
 
   const handleChange = (name: string, value: string) => {
     setValues((s) => ({ ...s, [name]: value }))
   }
 
+  const checkForErrors = () => {
+    if (values.word === '') {
+      setError('Please enter a word')
+      setPlaceholderText('Please, type in a word, ex: magical')
+    }
+  }
+
   const handleFilter = () => {
-    onSubmit(values)
+    checkForErrors()
+    if (values.word !== '') {
+      onSubmit(values)
+    }
+  }
+
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (values.word !== '') {
+      setError('')
+      setPlaceholderText('Type in a word, ex: magical')
+    }
+    if (e.key === 'Enter') {
+      handleFilter()
+    }
   }
 
   return (
@@ -57,12 +85,14 @@ const DomainSearch = ({
       <S.MainSearch>
         <SearchField
           name="word"
-          placeholder="Type in a word"
+          placeholder={placeholderText}
           type="text"
           onInput={(v) => handleChange('word', v)}
+          onKeyUp={handleKeyUp}
+          error={error}
         />
         <Button size="xlarge" onClick={handleFilter}>
-          Search Domains
+          {searching ? <FormLoading /> : <span>Search Domains</span>}
         </Button>
       </S.MainSearch>
       <S.SearchOptions>
