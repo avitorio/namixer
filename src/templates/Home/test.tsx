@@ -1,7 +1,4 @@
 import 'match-media-mock'
-// import { render } from 'utils/test-utils'
-
-// import Home from '.'
 
 jest.mock('templates/Base', () => ({
   __esModule: true,

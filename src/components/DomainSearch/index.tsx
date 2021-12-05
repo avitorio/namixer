@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import Button from 'components/Button'
 import RadioButton from 'components/RadioButton'
 import SearchField from 'components/SearchField'
@@ -27,26 +27,19 @@ type Field = {
 
 export type DomainSearchProps = {
   items: ItemProps[]
-  initialValues?: SearchValues
-  onSubmit: (values: SearchValues) => void
+  onSubmit: (values: SearchValues, fetchMore: boolean) => void
   searching?: boolean
-}
-
-export const initialSearchValues = {
-  word: '',
-  type: 'topWords',
-  order: 'suffix',
-  size: '1',
-  line: 0
+  values: SearchValues
+  setValues: Dispatch<SetStateAction<SearchValues>>
 }
 
 const DomainSearch = ({
   items,
   onSubmit,
-  initialValues = initialSearchValues,
-  searching = false
+  searching = false,
+  values,
+  setValues
 }: DomainSearchProps) => {
-  const [values, setValues] = useState<SearchValues>(initialValues)
   const [error, setError] = useState('')
   const [placeholderText, setPlaceholderText] = useState(
     'Type in a word, ex: magical'
@@ -63,10 +56,10 @@ const DomainSearch = ({
     }
   }
 
-  const handleFilter = () => {
+  const handleFilter = (fetchMore = false) => {
     checkForErrors()
     if (values.word !== '') {
-      onSubmit(values)
+      onSubmit(values, fetchMore)
     }
   }
 
@@ -91,7 +84,7 @@ const DomainSearch = ({
           onKeyUp={handleKeyUp}
           error={error}
         />
-        <Button size="xlarge" onClick={handleFilter}>
+        <Button size="xlarge" onClick={() => handleFilter(false)}>
           {searching ? <FormLoading /> : <span>Search Domains</span>}
         </Button>
       </S.MainSearch>
