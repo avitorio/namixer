@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ResultsList /> should render the heading 1`] = `
+.c0 {
+  margin-top: 4.0rem;
+  max-width: 96rem;
+  width: 100%;
+}
+
+.c0 li {
+  list-style: none;
+  margin-bottom: 2.4rem;
+}
+
+<ul
+  class="c0"
+>
+  <div
+    class="infinite-scroll-component__outerdiv"
+  >
+    <div
+      class="infinite-scroll-component "
+      style="height: auto; overflow: auto;"
+    />
+  </div>
+</ul>
+`

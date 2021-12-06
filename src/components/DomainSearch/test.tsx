@@ -1,6 +1,5 @@
 import React from 'react'
 import userEvent from '@testing-library/user-event'
-// import { initialSearchValues } from 'templates/Home'
 import { render, screen } from 'utils/test-utils'
 
 import DomainSearch from '.'

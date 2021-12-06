@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import InfiniteScroll from 'react-infinite-scroll-component'
 import Base from 'templates/Base'
 import { Container } from 'components/Container'
 import { socket } from 'config/web-sockets'
@@ -8,6 +7,7 @@ import { useSession } from 'next-auth/client'
 import DomainSearch, { ItemProps } from 'components/DomainSearch'
 
 import * as S from './styles'
+import ResultsList from 'components/ResultsList'
 
 export type HomeTemplateProps = {
   filterItems: ItemProps[]
@@ -20,7 +20,7 @@ export type SearchValues = {
 
 export type SearchResults = {
   domain: string
-  status: 'taken' | 'available'
+  status: 'taken' | 'available' | 'searching'
 }
 
 export const initialSearchValues = {
@@ -39,8 +39,6 @@ const HomeTemplate = ({
   const [session, loading] = useSession()
   const [hasNextPage, setHasNextPage] = useState(false)
   const [searching, setSearching] = useState(false)
-  const [currentlySearching, setCurrentlySearching] = useState('')
-  const [lastLine, setLastLine] = useState(0)
   const [values, setValues] = useState<SearchValues>(initialValues)
 
   const fetchData = async (values: SearchValues): Promise<boolean> => {
@@ -56,25 +54,16 @@ const HomeTemplate = ({
 
         socket.on('result', (data) => {
           const resData = JSON.parse(data)
-          if (resData.lastLine) {
-            setLastLine(resData.lastLine)
-          }
 
           setResults((results) => {
-            const found = results.find(
-              (result) => result.domain === resData.domain
-            )
-            if (found) {
-              found.status = resData.status
-              return results
-            }
+            return results.map((domain) => {
+              if (domain.domain === resData.domain) {
+                domain.status = resData.status
+                return resData
+              }
 
-            if (!session?.user?.name && results.length >= 20) {
-              socket.disconnect()
-              setHasNextPage(false)
-              return results
-            }
-            return [...results, resData]
+              return domain
+            })
           })
 
           resolve(false)
@@ -83,33 +72,41 @@ const HomeTemplate = ({
     })
   }
 
-  const onSubmit = (values: SearchValues, fetchMore = false) => {
+  const onSubmit = async (values: SearchValues, fetchMore = false) => {
     if (!fetchMore) {
-      setLastLine(0)
       socket.disconnect()
       setResults([])
       socket.connect()
-    } else {
-      setValues({ ...values, line: lastLine })
     }
+
+    const res = await fetch(
+      `http://localhost:3000/api/domains?word=${values.word}&type=${
+        values.type
+      }&order=${values.order}&size=${values.size}&line=${
+        fetchMore ? results.length : 0
+      }`
+    )
+
+    const data = await res.json()
+
+    if (!session?.user?.name && values.type === 'alphabet') {
+      data.list = data.list.slice(0, 30)
+    }
+    data.list.forEach((domain: string) => {
+      setResults((results) => [...results, { domain, status: 'searching' }])
+    })
 
     setHasNextPage(false)
     setSearching(true)
-    fetchData(values).then((isLastPage: boolean) => {
-      if (!isLastPage) {
-        setHasNextPage(true)
-      } else {
-        setHasNextPage(false)
+    fetchData({ ...values, line: data.list.length, list: data.list }).then(
+      () => {
+        if (session?.user?.name) {
+          setHasNextPage(values.type !== 'alphabet')
+        }
         setSearching(false)
       }
-      setSearching(false)
-    })
+    )
   }
-
-  socket.on('searching', (data) => {
-    const resData = JSON.parse(data)
-    setCurrentlySearching(resData.domain)
-  })
 
   useEffect(() => {
     if (!loading) {
@@ -136,42 +133,15 @@ const HomeTemplate = ({
             values={{ ...values, line: 0 }}
             setValues={setValues}
           />
-          <span>
-            {currentlySearching !== '' &&
-              `Currently searching: ${currentlySearching}`}
-          </span>
           {results.length > 0 && (
-            <span>{`Found ${results.length} available domains!`}</span>
+            <span>{`Searching ${results.length} domains!`}</span>
           )}
-          <S.Results>
-            <InfiniteScroll
-              dataLength={results.length}
-              next={() => onSubmit(values, true)}
-              hasMore={hasNextPage}
-              loader={<h4>Loading...</h4>}
-            >
-              {results.map((result) => {
-                if (result.domain) {
-                  return (
-                    <li key={result.domain}>
-                      <S.Domain status={result.status}>
-                        <div>
-                          <strong>{result.domain}</strong>
-                          {result.status === 'taken' && <span>Taken</span>}
-                          {result.status === 'available' && (
-                            <span>Available</span>
-                          )}
-                        </div>
-                      </S.Domain>
-                    </li>
-                  )
-                }
-              })}
-            </InfiniteScroll>
-            {results.length > 0 && !session?.user?.name && (
-              <h1>Register for more results</h1>
-            )}
-          </S.Results>
+          <ResultsList
+            results={results}
+            onSubmit={() => onSubmit(values, true)}
+            hasNextPage={hasNextPage}
+            session={session}
+          />
         </S.Wrapper>
       </Container>
     </Base>
