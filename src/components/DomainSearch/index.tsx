@@ -23,6 +23,7 @@ export type ItemProps = {
 type Field = {
   label: string
   name: string
+  selected?: boolean
 }
 
 export type DomainSearchProps = {
@@ -46,7 +47,19 @@ const DomainSearch = ({
   )
 
   const handleChange = (name: string, value: string) => {
-    setValues((s) => ({ ...s, [name]: value }))
+    setValues((s) => {
+      if (name === 'type' && value === 'dictionary') {
+        console.log('dictionary')
+        return { ...s, [name]: value, size: '2' }
+      }
+
+      if (name === 'type' && value === 'alphabet') {
+        console.log('alphabet')
+        return { ...s, [name]: value, size: '1' }
+      }
+
+      return { ...s, [name]: value }
+    })
   }
 
   const checkForErrors = () => {
@@ -120,7 +133,11 @@ const DomainSearch = ({
                     onChange={(e) => handleChange(item.name, e.target.value)}
                   >
                     {item.fields[values.type].map((value) => (
-                      <option key={value.name} value={value.name}>
+                      <option
+                        key={value.name}
+                        value={value.name}
+                        selected={!!value?.selected}
+                      >
                         {value.label}
                       </option>
                     ))}

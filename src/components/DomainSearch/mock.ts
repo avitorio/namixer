@@ -44,7 +44,8 @@ export default [
       alphabet: [
         {
           label: '1',
-          name: '1'
+          name: '1',
+          selected: true
         },
         {
           label: '2',
@@ -54,7 +55,8 @@ export default [
       dictionary: [
         {
           label: '2',
-          name: '2'
+          name: '2',
+          selected: true
         },
         {
           label: '3',
