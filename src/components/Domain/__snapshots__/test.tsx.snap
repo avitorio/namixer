@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Domain /> should render the heading 1`] = `
+.c2 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: #E65A6D;
+  color: #FAFAFA;
+  font-family: Source Sans Pro,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.4rem;
+  padding: 0.8rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  white-space: nowrap;
+  height: 4rem;
+  font-size: 1.4rem;
+  padding: 0.8rem 3.2rem;
+}
+
+.c2:hover {
+  color: #FAFAFA;
+  background: #df2e46;
+}
+
+.c0 {
+  height: 68px;
+  left: 242px;
+  top: 574px;
+  color: #000;
+  background-color: #ffffff;
+  border-radius: 8px;
+  max-width: 96rem;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 24px;
+  opacity: 1;
+}
+
+.c1 strong {
+  margin-right: 8px;
+}
+
+.c1 span {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-weight: 600;
+  height: 1.6rem;
+  font-size: 1.2rem;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: rgb(250,250,250);
+  padding: 0rem 0.6rem;
+  border-radius: 1.2rem;
+  background: #3cd3c1;
+}
+
+.c1 button {
+  background: #3cd3c1;
+}
+
+<li
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <strong>
+      namixer.com
+    </strong>
+    <span>
+      <span>
+        AVAILABLE
+      </span>
+    </span>
+  </div>
+  <div>
+    <button
+      class="c2"
+    >
+      <span>
+        Register Now
+      </span>
+    </button>
+  </div>
+</li>
+`
