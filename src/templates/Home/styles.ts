@@ -23,14 +23,3 @@ export const MainSearch = styled.section`
     `}
   `}
 `
-
-export const ResultsHeader = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    margin: ${theme.spacings.medium} 0;
-    width: 100%;
-    max-width: 96rem;
-    align-items: center;
-    justify-content: space-between;
-  `}
-`

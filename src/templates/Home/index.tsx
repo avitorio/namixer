@@ -8,7 +8,7 @@ import DomainSearch, { ItemProps } from 'components/DomainSearch'
 import DomainResults from 'components/DomainResults'
 
 import * as S from './styles'
-import Toggle from 'components/Toggle'
+import ResultsHeader from 'components/ResultsHeader'
 
 export type HomeTemplateProps = {
   filterItems: ItemProps[]
@@ -135,16 +135,7 @@ const HomeTemplate = ({
             values={{ ...values, line: 0 }}
             setValues={setValues}
           />
-          {results.length > 0 && (
-            <S.ResultsHeader>
-              <Toggle
-                onCheck={setHideTaken}
-                label="Only show available domains."
-                labelFor="hideTaken"
-              />
-              <span>{`${results.length} domains.`}</span>
-            </S.ResultsHeader>
-          )}
+          <ResultsHeader results={results} setHideTaken={setHideTaken} />
           <DomainResults
             results={results}
             onSubmit={() => onSubmit(values, true)}

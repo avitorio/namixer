@@ -1,9 +1,9 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import ResultsList from '.'
+import DomainResults from '.'
 
 export default {
-  title: 'ResultsList',
-  component: ResultsList
+  title: 'DomainResults',
+  component: DomainResults
 } as Meta
 
-export const Default: Story = () => <ResultsList />
+export const Default: Story = () => <DomainResults />
