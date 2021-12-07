@@ -9,13 +9,15 @@ export type DomainResultsProps = {
   onSubmit?: () => Promise<void>
   hasNextPage?: boolean
   session?: Session | null
+  hideTaken?: boolean
 }
 
 const DomainResults = ({
   results = [],
   onSubmit = () => new Promise(() => null),
   hasNextPage = false,
-  session = null
+  session = null,
+  hideTaken = false
 }: DomainResultsProps) => {
   return (
     <S.Results>
@@ -26,8 +28,12 @@ const DomainResults = ({
         loader={<h4>Loading...</h4>}
       >
         {results.map((result) => {
-          if (result.domain) {
-            return <Domain {...result} />
+          if (hideTaken) {
+            if (result.status !== 'taken') {
+              return <Domain {...result} key={result.domain} />
+            }
+          } else {
+            return <Domain {...result} key={result.domain} />
           }
         })}
       </InfiniteScroll>

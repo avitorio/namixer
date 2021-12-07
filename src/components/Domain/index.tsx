@@ -3,7 +3,7 @@ import { SearchResults } from 'templates/Home'
 import * as S from './styles'
 
 const Domain = ({ domain, status }: SearchResults) => (
-  <S.DomainRow key={domain} status={status}>
+  <S.DomainRow status={status}>
     <S.Domain status={status}>
       <strong>{domain}</strong>
       {status !== 'searching' && (
