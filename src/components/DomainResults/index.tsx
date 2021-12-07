@@ -54,6 +54,9 @@ const DomainResults = ({
           </div>
         </S.Notice>
       )}
+      {results.length > 0 && hasNextPage && (
+        <S.Notice>Scroll down for more results.</S.Notice>
+      )}
     </S.Results>
   )
 }
