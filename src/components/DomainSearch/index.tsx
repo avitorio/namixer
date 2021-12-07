@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, Fragment, SetStateAction, useState } from 'react'
+import { Search as SearchIcon } from '@styled-icons/material-outlined/Search'
 import Button from 'components/Button'
 import RadioButton from 'components/RadioButton'
 import SearchField from 'components/SearchField'
@@ -7,6 +8,7 @@ import { SearchValues } from 'templates/Home'
 import * as S from './styles'
 import Select from 'components/Select'
 import { FormLoading } from 'components/Form'
+import MediaMatch from 'components/MediaMatch'
 
 export type ItemProps = {
   title: string
@@ -97,15 +99,29 @@ const DomainSearch = ({
           onKeyUp={handleKeyUp}
           error={error}
         />
-        <Button size="xlarge" onClick={() => handleFilter(false)}>
-          {searching ? <FormLoading /> : <span>Search Domains</span>}
-        </Button>
+
+        <MediaMatch greaterThan="medium">
+          <Button
+            size="xlarge"
+            onClick={() => handleFilter(false)}
+            aria-label="Search Domains"
+          >
+            {searching ? <FormLoading /> : 'Search Domains'}
+          </Button>
+        </MediaMatch>
+
+        <MediaMatch lessThan="medium">
+          <Button size="medium" onClick={() => handleFilter(false)}>
+            {searching ? <FormLoading /> : <SearchIcon />}
+          </Button>
+        </MediaMatch>
       </S.MainSearch>
+
       <S.SearchOptions>
         {items.map((item) => (
-          <S.OptionsWrapper key={item.title}>
+          <Fragment key={item.title}>
             {item.type === 'radio' && Array.isArray(item.fields) ? (
-              <>
+              <S.OptionsWrapper key={item.title}>
                 <span>{item.title}</span>
                 {item.fields.map((field) => (
                   <RadioButton
@@ -120,11 +136,11 @@ const DomainSearch = ({
                   />
                 ))}
                 {item.titleAfter && <span>{item.titleAfter}</span>}
-              </>
+              </S.OptionsWrapper>
             ) : (
               values.type !== 'topWords' &&
               !Array.isArray(item.fields) && (
-                <>
+                <S.OptionsWrapper key={item.title}>
                   <span>{item.title}</span>
                   <Select
                     id={item.name}
@@ -143,10 +159,10 @@ const DomainSearch = ({
                     ))}
                   </Select>
                   <span>{item.titleAfter}</span>
-                </>
+                </S.OptionsWrapper>
               )
             )}
-          </S.OptionsWrapper>
+          </Fragment>
         ))}
       </S.SearchOptions>
     </S.Wrapper>

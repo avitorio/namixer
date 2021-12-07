@@ -19,28 +19,46 @@ export const Wrapper = styled.div`
 
 export const MainSearch = styled.section`
   ${({ theme }) => css`
-    margin: 0 calc(-${theme.grid.gutter} / 2) ${theme.spacings.xsmall};
+    display: flex;
+    justify-content: space-between;
+    gap: ${theme.spacings.xxsmall};
+    width: 100%;
 
     ${media.greaterThan('medium')`
+      margin: 0 ${theme.spacings.xsmall} ${theme.spacings.xsmall};
       max-width: 96rem;
-      width: 100%;
-      display: flex;
       align-items: flex-start;
-      justify-content: space-between;
-      gap: ${theme.spacings.small};
+      padding: 0;
+      gap: ${theme.spacings.xsmall};
 
       ${ButtonStyles.Wrapper} {
         width: 100%;
       }
     `}
+
+    ${ButtonStyles.Wrapper} {
+      ${media.lessThan('medium')`
+        height: 5.6rem;
+        padding: 0 ${theme.spacings.xsmall};
+
+        svg {
+          width: 3rem
+        }
+      `}
   `}
 `
 
 export const SearchOptions = styled.div`
-  align-items: center;
   display: flex;
+  align-items: flex-start;
   margin-top: 10px;
   width: 100%;
+  flex-direction: column;
+
+  ${media.greaterThan('medium')`
+    flex-direction: row;
+    align-items: center;
+  `}
 `
 export const OptionsWrapper = styled.div`
   align-items: center;
@@ -51,8 +69,17 @@ export const OptionsWrapper = styled.div`
   margin-bottom: 1rem;
   position: relative;
 
-  span {
-    margin-right: 10px;
+  span:first-child {
+    display: none;
+    min-width: 42px;
+    @media (min-width: 321px) {
+      display: block;
+    }
+
+    ${media.greaterThan('medium')`
+      min-width: initial;
+      margin-right: 10px;
+    `}
   }
 `
 

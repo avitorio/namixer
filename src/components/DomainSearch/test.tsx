@@ -29,9 +29,7 @@ describe('<DomainSearch />', () => {
       />
     )
     expect(screen.getByPlaceholderText(/type in a word/i)).toBeInTheDocument()
-    expect(
-      screen.getByRole('button', { name: /search domains/i })
-    ).toBeInTheDocument()
+    expect(screen.getByLabelText(/search domains/i)).toBeInTheDocument()
   })
 
   it('should render the search options', () => {
@@ -59,7 +57,7 @@ describe('<DomainSearch />', () => {
       />
     )
 
-    expect(screen.getByLabelText(/popular words/i)).toBeChecked()
+    expect(screen.getByLabelText(/popular/i)).toBeChecked()
   })
 
   it('should return domains on search', () => {
@@ -75,7 +73,7 @@ describe('<DomainSearch />', () => {
       />
     )
 
-    userEvent.click(screen.getByRole('button', { name: /search domains/i }))
+    userEvent.click(screen.getByLabelText(/search domains/i))
     expect(onSubmit).toBeCalledWith(
       {
         ...initialSearchValues,
@@ -105,7 +103,7 @@ describe('<DomainSearch />', () => {
 
     userEvent.click(screen.getByLabelText(/prefix/i))
 
-    userEvent.click(screen.getByRole('button', { name: /search domains/i }))
+    userEvent.click(screen.getByLabelText(/search domains/i))
     expect(setValues).toHaveBeenCalled()
     expect(onSubmit).toBeCalledWith(
       {

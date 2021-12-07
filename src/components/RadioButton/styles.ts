@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import media from 'styled-media-query'
 import { lighten } from 'polished'
 
 export const Wrapper = styled.div`
@@ -31,12 +32,16 @@ export const Label = styled.label`
     justify-content: center;
     font-family: ${theme.font.family};
     font-weight: ${theme.font.bold};
-    padding: ${theme.spacings.xsmall};
+    padding: 1rem;
     text-decoration: none;
     white-space: nowrap;
 
     &:hover {
       background-color: ${lighten(0.05, theme.colors.secondary)};
     }
+
+    ${media.greaterThan('medium')`
+      padding: ${theme.spacings.xsmall};
+    `}
   `}
 `

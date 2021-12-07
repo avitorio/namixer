@@ -17,10 +17,10 @@ exports[`<SearchField /> Renders with error 1`] = `
   -ms-flex-align: center;
   align-items: center;
   background: #F4F6F9;
-  border-radius: 0.8rem;
   border: 0.2rem solid;
+  border-radius: 0.4rem;
   padding: 0 1.6rem;
-  height: 6.4rem;
+  height: 5.6rem;
 }
 
 .c4:focus-within {
@@ -46,18 +46,7 @@ exports[`<SearchField /> Renders with error 1`] = `
 }
 
 .c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  color: #858C94;
-  -webkit-order: 0;
-  -ms-flex-order: 0;
-  order: 0;
-}
-
-.c6 > svg {
-  width: 2.2rem;
+  display: none;
 }
 
 .c0 {
@@ -75,19 +64,48 @@ exports[`<SearchField /> Renders with error 1`] = `
 
 @media (min-width:1170px) {
   .c4 {
-    width: 71.8rem;
+    width: 100%;
+  }
+}
+
+@media (min-width:768px) {
+  .c4 {
+    border-radius: 0.8rem;
+    height: 6.4rem;
   }
 }
 
 @media (max-width:768px) {
+  .c8 {
+    width: 100%;
+    padding: 0.8rem 0;
+  }
+
   .c8[type='text'] {
     font-size: 16px;
   }
 }
 
+@media (min-width:450px) {
+  .c6 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    color: #858C94;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+  }
+
+  .c6 > svg {
+    width: 3.2rem;
+  }
+}
+
 @media (min-width:1170px) {
   .c0 {
-    width: 71.8rem;
+    width: 72rem;
   }
 }
 

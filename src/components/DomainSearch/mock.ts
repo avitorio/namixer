@@ -6,7 +6,7 @@ export default [
     type: 'radio',
     fields: [
       {
-        label: 'Popular Words',
+        label: 'Popular',
         name: 'topWords'
       },
       {

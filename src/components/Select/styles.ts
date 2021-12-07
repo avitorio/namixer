@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { lighten } from 'polished'
+import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ export const Select = styled.select`
     font-family: ${theme.font.family};
     font-size: ${theme.font.sizes.medium};
     font-weight: ${theme.font.bold};
-    padding: ${theme.spacings.xsmall} 30px ${theme.spacings.xsmall} 20px;
+    padding: 1rem 3rem 1rem 2rem;
     border: 2px solid #ffffff00;
     border-radius: ${theme.border.radius.small};
     outline: none;
@@ -27,5 +28,9 @@ export const Select = styled.select`
     &:hover {
       background-color: ${lighten(0.05, theme.colors.secondary)};
     }
+
+    ${media.greaterThan('medium')`
+    padding: ${theme.spacings.xsmall} 30px ${theme.spacings.xsmall} 20px;
+    `}
   `}
 `

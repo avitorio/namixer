@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { darken } from 'polished'
+import media from 'styled-media-query'
 
 import * as TextFieldStyles from 'components/TextField/styles'
 import * as ButtonStyles from 'components/Button/styles'
@@ -20,7 +21,11 @@ export const FormLoading = styled.img.attrs(() => ({
   src: '/img/dots.svg',
   alt: 'Waiting...'
 }))`
-  width: 4rem;
+  width: 3rem;
+
+  ${media.greaterThan('medium')`
+    width: 4rem;
+  `}
 `
 
 export const FormError = styled.div`
