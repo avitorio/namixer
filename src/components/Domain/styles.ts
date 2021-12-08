@@ -38,18 +38,19 @@ export const DomainRow = styled.li<DomainProps>`
 `
 
 export const Domain = styled.div<DomainProps>`
+  display: flex;
+  align-items: center;
   ${({ theme, status }) => css`
     strong {
       margin-right: 8px;
     }
     span {
-      display: inline-flex;
+      display: flex;
       font-weight: 600;
-      height: ${theme.spacings.xsmall};
       font-size: ${theme.font.sizes.xsmall};
       align-items: center;
       color: rgb(250, 250, 250);
-      padding: 0rem 0.6rem;
+      padding: 0.2rem 0.6rem;
       border-radius: 1.2rem;
       background: ${status === 'available' ? '#3cd3c1' : theme.colors.mainBg};
     }

@@ -22,7 +22,7 @@ export const Toggle = styled.label`
       border-radius: 100vw;
       background-color: ${theme.colors.primary};
       transition: 250ms;
-      cursor: pointer;
+      pointer-events: none;
     }
 
     span::before {

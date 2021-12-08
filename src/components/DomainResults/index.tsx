@@ -27,7 +27,7 @@ const DomainResults = ({
         dataLength={results.length}
         next={onSubmit}
         hasMore={hasNextPage}
-        loader={<h4>Loading...</h4>}
+        loader={<S.Notice>Looking for cool domains...</S.Notice>}
       >
         {results.map((result) => {
           if (hideTaken) {
@@ -54,7 +54,7 @@ const DomainResults = ({
           </div>
         </S.Notice>
       )}
-      {results.length > 0 && hasNextPage && (
+      {results.length > 0 && results.length < 20 && hasNextPage && (
         <S.Notice>Scroll down for more results.</S.Notice>
       )}
     </S.Results>

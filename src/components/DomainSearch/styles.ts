@@ -19,12 +19,14 @@ export const Wrapper = styled.div`
 
 export const MainSearch = styled.section`
   ${({ theme }) => css`
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 6.2rem;
     justify-content: space-between;
     gap: ${theme.spacings.xxsmall};
     width: 100%;
 
     ${media.greaterThan('medium')`
+      grid-template-columns: 1fr 22.4rem;
       margin: 0 ${theme.spacings.xsmall} ${theme.spacings.xsmall};
       max-width: 96rem;
       align-items: flex-start;

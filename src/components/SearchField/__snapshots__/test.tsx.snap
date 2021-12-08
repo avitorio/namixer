@@ -64,7 +64,7 @@ exports[`<SearchField /> Renders with error 1`] = `
 
 @media (min-width:1170px) {
   .c4 {
-    width: 100%;
+    width: 72rem;
   }
 }
 

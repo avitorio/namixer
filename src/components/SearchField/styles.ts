@@ -9,7 +9,7 @@ type WrapperProps = Pick<SearchFieldProps, 'disabled'> & { error?: boolean }
 
 export const InputWrapper = styled.div`
   ${media.greaterThan('large')`
-    width: 100%;
+    width: 72rem;
   `}
   ${({ theme }) => css`
     display: flex;

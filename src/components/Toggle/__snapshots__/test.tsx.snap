@@ -41,7 +41,7 @@ exports[`<Toggle /> should render the heading 1`] = `
   background-color: #E65A6D;
   -webkit-transition: 250ms;
   transition: 250ms;
-  cursor: pointer;
+  pointer-events: none;
 }
 
 .c0 span::before {
