@@ -42,6 +42,7 @@ const HomeTemplate = ({
   const [searching, setSearching] = useState(false)
   const [values, setValues] = useState<SearchValues>(initialValues)
   const [hideTaken, setHideTaken] = useState(false)
+  const [dataList, setDataList] = useState([])
 
   const fetchData = async (values: SearchValues): Promise<boolean> => {
     return new Promise((resolve) => {
@@ -98,11 +99,13 @@ const HomeTemplate = ({
       setResults((results) => [...results, { domain, status: 'searching' }])
     })
 
+    setDataList(data.list)
     setHasNextPage(false)
     setSearching(true)
     fetchData({ ...values, line: data.list.length, list: data.list }).then(
       () => {
-        if (session?.user?.name) {
+        // If the API returns less than 30 items then we've reached the end of a list
+        if (session?.user?.name && dataList.length >= 30) {
           setHasNextPage(values.type !== 'alphabet')
         }
         setSearching(false)
