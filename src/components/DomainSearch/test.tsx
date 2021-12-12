@@ -4,7 +4,7 @@ import { render, screen } from 'utils/test-utils'
 
 import DomainSearch from '.'
 
-import items from './mock'
+import searchOptions from './searchOptions'
 
 export const initialSearchValues = {
   word: '',
@@ -21,7 +21,7 @@ describe('<DomainSearch />', () => {
   it('should render the search bar and button', () => {
     render(
       <DomainSearch
-        items={items}
+        searchOptions={searchOptions}
         onSubmit={jest.fn}
         searching={false}
         values={values}
@@ -35,7 +35,7 @@ describe('<DomainSearch />', () => {
   it('should render the search options', () => {
     render(
       <DomainSearch
-        items={items}
+        searchOptions={searchOptions}
         onSubmit={jest.fn}
         searching={false}
         values={values}
@@ -49,7 +49,7 @@ describe('<DomainSearch />', () => {
   it('should check initial values are passed', () => {
     render(
       <DomainSearch
-        items={items}
+        searchOptions={searchOptions}
         onSubmit={jest.fn}
         searching={false}
         values={values}
@@ -65,7 +65,7 @@ describe('<DomainSearch />', () => {
 
     render(
       <DomainSearch
-        items={items}
+        searchOptions={searchOptions}
         onSubmit={onSubmit}
         searching={false}
         values={{ ...values, word: 'keyword' }}
@@ -93,7 +93,7 @@ describe('<DomainSearch />', () => {
 
     render(
       <DomainSearch
-        items={items}
+        searchOptions={searchOptions}
         onSubmit={onSubmit}
         searching={false}
         values={values}

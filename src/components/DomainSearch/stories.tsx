@@ -1,13 +1,13 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import DomainSearch, { DomainSearchProps } from '.'
+import DomainSearch, { DomainSearchOptionsProps } from '.'
 
-import items from './mock'
+import searchOptions from './searchOptions'
 
 export default {
   title: 'DomainSearch',
   component: DomainSearch,
   args: {
-    items
+    searchOptions
   },
   parameters: {
     backgrounds: {
@@ -16,10 +16,10 @@ export default {
   }
 } as Meta
 
-export const Default: Story<DomainSearchProps> = (args) => (
+export const Default: Story<DomainSearchOptionsProps> = (args) => (
   <DomainSearch {...args} />
 )
 
-export const WithInitialValues: Story<DomainSearchProps> = (args) => (
+export const WithInitialValues: Story<DomainSearchOptionsProps> = (args) => (
   <DomainSearch {...args} values={{ type: 'alphabet', order: 'suffix' }} />
 )

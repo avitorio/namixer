@@ -4,14 +4,14 @@ import { Container } from 'components/Container'
 import { socket } from 'config/web-sockets'
 import { useSession } from 'next-auth/client'
 
-import DomainSearch, { ItemProps } from 'components/DomainSearch'
+import DomainSearch, { SearchOptionsProps } from 'components/DomainSearch'
 import DomainResults from 'components/DomainResults'
 
 import * as S from './styles'
 import ResultsHeader from 'components/ResultsHeader'
 
 export type HomeTemplateProps = {
-  filterItems: ItemProps[]
+  searchOptions: SearchOptionsProps[]
   initialValues?: SearchValues
 }
 
@@ -33,7 +33,7 @@ export const initialSearchValues = {
 }
 
 const HomeTemplate = ({
-  filterItems = [],
+  searchOptions = [],
   initialValues = initialSearchValues
 }: HomeTemplateProps) => {
   const [results, setResults] = useState<SearchResults[]>([])
@@ -132,7 +132,7 @@ const HomeTemplate = ({
       <Container>
         <S.Wrapper>
           <DomainSearch
-            items={filterItems}
+            searchOptions={searchOptions}
             onSubmit={onSubmit}
             searching={searching}
             values={{ ...values, line: 0 }}

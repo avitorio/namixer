@@ -1,5 +1,5 @@
 import HomeTemplate, { HomeTemplateProps } from 'templates/Home'
-import filterItemsMock from 'components/DomainSearch/mock'
+import searchOptions from 'components/DomainSearch/searchOptions'
 
 export default function HomePage(props: HomeTemplateProps) {
   return <HomeTemplate {...props} />
@@ -8,7 +8,7 @@ export default function HomePage(props: HomeTemplateProps) {
 export async function getServerSideProps() {
   return {
     props: {
-      filterItems: filterItemsMock
+      searchOptions
     }
   }
 }

@@ -10,6 +10,12 @@ export type RadioButtonProps = {
   labelColor?: 'white' | 'black'
   labelFor?: string
   value?: RadioButtonValue
+  tooltip?: {
+    title: string
+    description: string
+    keyword: string
+    example: string
+  }
 } & InputHTMLAttributes<HTMLInputElement>
 
 const RadioButton = ({
@@ -17,6 +23,7 @@ const RadioButton = ({
   onCheck,
   labelFor = '',
   value,
+  tooltip,
   ...props
 }: RadioButtonProps) => {
   const onChange = () => {
@@ -32,7 +39,23 @@ const RadioButton = ({
         onChange={onChange}
         {...props}
       />
-      {!!label && <S.Label htmlFor={labelFor}>{label}</S.Label>}
+      {!!label && (
+        <S.Label htmlFor={labelFor} className={tooltip && 'tooltip'}>
+          {label}
+        </S.Label>
+      )}
+      {tooltip && (
+        <S.Tooltip className="tooltip">
+          <div>
+            <h4>{tooltip.title}</h4>
+            <p>{tooltip.description}</p>
+            <p>
+              Example results for: <strong>{tooltip.keyword}</strong>
+            </p>
+            <p>{tooltip.example}</p>
+          </div>
+        </S.Tooltip>
+      )}
     </S.Wrapper>
   )
 }

@@ -10,6 +10,7 @@ exports[`<RadioButton /> should render with label (white) 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  position: relative;
 }
 
 .c1 {
@@ -46,11 +47,31 @@ exports[`<RadioButton /> should render with label (white) 1`] = `
   padding: 1rem;
   -webkit-text-decoration: none;
   text-decoration: none;
-  white-space: nowrap;
+  position: relative;
+  white-space: pre;
 }
 
 .c2:hover {
+  z-index: 4;
   background-color: #defdd9;
+}
+
+.c2:hover.tooltip:after {
+  content: '';
+  position: absolute;
+  bottom: -23px;
+  left: 50%;
+  margin-left: -16px;
+  border-width: 15px;
+  border-style: solid;
+  border-color: transparent transparent #fff;
+  z-index: 2;
+}
+
+@media (min-width:450px) {
+  .c0:hover .tooltip {
+    display: block;
+  }
 }
 
 @media (min-width:768px) {

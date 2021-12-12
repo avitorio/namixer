@@ -7,15 +7,34 @@ export default [
     fields: [
       {
         label: 'Popular',
-        name: 'topWords'
+        name: 'topWords',
+        tooltip: {
+          title: 'Popular Mix:',
+          description: 'Mix your keyword with a list of popular keywords.',
+          keyword: 'Brazil',
+          example: '"BrazilTv.com", "BrazilCo.com", "BrazilUp.com"...'
+        }
       },
       {
         label: 'Alphabet',
-        name: 'alphabet'
+        name: 'alphabet',
+        tooltip: {
+          title: 'Alphabet Mix:',
+          description:
+            'Mixes your keyword with letters and combination of letters.',
+          keyword: 'Crypto',
+          example: '"CryptoA.com", "CryptoB.com", "CryptoC.com"...'
+        }
       },
       {
         label: 'Dictionary',
-        name: 'dictionary'
+        name: 'dictionary',
+        tooltip: {
+          title: 'Dictionary Mix:',
+          description: 'Mixes your keyword with words from the dictionary.',
+          keyword: 'Meta',
+          example: '"MetaBall.com", "MetaBill.com", "MetaCall.com"...'
+        }
       }
     ]
   },

@@ -10,7 +10,7 @@ import Select from 'components/Select'
 import { FormLoading } from 'components/Form'
 import MediaMatch from 'components/MediaMatch'
 
-export type ItemProps = {
+export type SearchOptionsProps = {
   title: string
   titleAfter?: string
   type: string
@@ -26,10 +26,16 @@ type Field = {
   label: string
   name: string
   selected?: boolean
+  tooltip?: {
+    title: string
+    description: string
+    keyword: string
+    example: string
+  }
 }
 
-export type DomainSearchProps = {
-  items: ItemProps[]
+export type DomainSearchOptionsProps = {
+  searchOptions: SearchOptionsProps[]
   onSubmit: (values: SearchValues, fetchMore: boolean) => void
   searching?: boolean
   values: SearchValues
@@ -37,12 +43,12 @@ export type DomainSearchProps = {
 }
 
 const DomainSearch = ({
-  items,
+  searchOptions,
   onSubmit,
   searching = false,
   values,
   setValues
-}: DomainSearchProps) => {
+}: DomainSearchOptionsProps) => {
   const [error, setError] = useState('')
   const [placeholderText, setPlaceholderText] = useState(
     'Type in a word, ex: magical'
@@ -50,16 +56,9 @@ const DomainSearch = ({
 
   const handleChange = (name: string, value: string) => {
     setValues((s) => {
-      if (name === 'type' && value === 'dictionary') {
-        console.log('dictionary')
-        return { ...s, [name]: value, size: '2' }
+      if (name === 'type' && value !== 'topWords') {
+        return { ...s, [name]: value, size: value === 'alphabet' ? '1' : '2' }
       }
-
-      if (name === 'type' && value === 'alphabet') {
-        console.log('alphabet')
-        return { ...s, [name]: value, size: '1' }
-      }
-
       return { ...s, [name]: value }
     })
   }
@@ -118,7 +117,7 @@ const DomainSearch = ({
       </S.MainSearch>
 
       <S.SearchOptions>
-        {items.map((item) => (
+        {searchOptions.map((item) => (
           <Fragment key={item.title}>
             {item.type === 'radio' && Array.isArray(item.fields) ? (
               <S.OptionsWrapper key={item.title}>
@@ -133,6 +132,7 @@ const DomainSearch = ({
                     value={field.name}
                     defaultChecked={field.name === values[item.name]}
                     onChange={() => handleChange(item.name, field.name)}
+                    tooltip={field.tooltip}
                   />
                 ))}
                 {item.titleAfter && <span>{item.titleAfter}</span>}
@@ -143,20 +143,21 @@ const DomainSearch = ({
                 <S.OptionsWrapper key={item.title}>
                   <span>{item.title}</span>
                   <Select
-                    id={item.name}
-                    name={item.name}
-                    aria-label={item.name}
-                    onChange={(e) => handleChange(item.name, e.target.value)}
+                    id="size"
+                    name="size"
+                    aria-label="size"
+                    onChange={(e) => handleChange('size', e.target.value)}
                   >
-                    {item.fields[values.type].map((value) => (
-                      <option
-                        key={value.name}
-                        value={value.name}
-                        selected={!!value?.selected}
-                      >
-                        {value.label}
-                      </option>
-                    ))}
+                    {item.fields[values.type].map((value) => {
+                      return (
+                        <option
+                          key={values.type + value.name}
+                          value={value.name}
+                        >
+                          {value.name}
+                        </option>
+                      )
+                    })}
                   </Select>
                   <span>{item.titleAfter}</span>
                 </S.OptionsWrapper>
