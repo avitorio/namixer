@@ -10,6 +10,7 @@ export type DomainResultsProps = {
   results?: SearchResults[]
   onSubmit?: () => Promise<void>
   hasNextPage?: boolean
+  searching?: boolean
   session?: Session | null
   hideTaken?: boolean
 }
@@ -18,6 +19,7 @@ const DomainResults = ({
   results = [],
   onSubmit = () => new Promise(() => null),
   hasNextPage = false,
+  searching = false,
   session = null,
   hideTaken = false
 }: DomainResultsProps) => {
@@ -54,7 +56,7 @@ const DomainResults = ({
           </div>
         </S.Notice>
       )}
-      {results.length > 0 && results.length < 20 && hasNextPage && (
+      {results.length > 0 && hasNextPage && !searching && (
         <S.Notice>Scroll down for more results.</S.Notice>
       )}
     </S.Results>

@@ -127,6 +127,10 @@ const HomeTemplate = ({
     }
   }, [loading, session])
 
+  useEffect(() => {
+    socket.disconnect()
+  }, [])
+
   return (
     <Base>
       <Container>
@@ -138,13 +142,18 @@ const HomeTemplate = ({
             values={{ ...values, line: 0 }}
             setValues={setValues}
           />
-          <ResultsHeader results={results} setHideTaken={setHideTaken} />
+          <ResultsHeader
+            results={results}
+            setHideTaken={setHideTaken}
+            hideTaken={hideTaken}
+          />
           <DomainResults
             results={results}
             onSubmit={() => onSubmit(values, true)}
             hasNextPage={hasNextPage}
             session={session}
             hideTaken={hideTaken}
+            searching={searching}
           />
         </S.Wrapper>
       </Container>

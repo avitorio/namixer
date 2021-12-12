@@ -7,9 +7,14 @@ import * as S from './styles'
 export type ResultsHeaderProps = {
   results: SearchResults[]
   setHideTaken: (value: boolean | ((prevVar: boolean) => boolean)) => void
+  hideTaken: boolean
 }
 
-const ResultsHeader = ({ results = [], setHideTaken }: ResultsHeaderProps) => {
+const ResultsHeader = ({
+  results = [],
+  setHideTaken,
+  hideTaken
+}: ResultsHeaderProps) => {
   const [found, setFound] = useState(0)
   const [taken, setTaken] = useState(0)
 
@@ -29,6 +34,7 @@ const ResultsHeader = ({ results = [], setHideTaken }: ResultsHeaderProps) => {
               onCheck={setHideTaken}
               label="Only show available domains."
               labelFor="hideTaken"
+              isChecked={hideTaken}
             />
             <MediaMatch greaterThan="small">
               <span>{`${found} domains available. ${taken} taken.`}</span>
