@@ -13,6 +13,10 @@ exports[`<RadioButton /> should render with label (white) 1`] = `
   position: relative;
 }
 
+.c0:hover .tooltip:after {
+  display: none;
+}
+
 .c1 {
   opacity: 0;
   position: fixed;

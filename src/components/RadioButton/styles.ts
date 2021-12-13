@@ -8,11 +8,13 @@ export const Wrapper = styled.div`
     align-items: center;
     position: relative;
 
+    &:hover .tooltip:after {
+      display: none;
+    }
+
     ${media.greaterThan('small')`
-      &:hover {
-        .tooltip {
-          display: block;
-        }
+      &:hover .tooltip {
+        display: block;
       }
     `}
   `}

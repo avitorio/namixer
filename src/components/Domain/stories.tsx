@@ -7,5 +7,12 @@ export default {
 } as Meta
 
 export const Default: Story = () => (
-  <Domain {...{ domain: 'namixer.com', status: 'available' }} />
+  <Domain
+    {...{
+      domain: 'namixer.com',
+      status: 'available',
+      hideTaken: false,
+      setOpenAlert: () => true
+    }}
+  />
 )

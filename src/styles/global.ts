@@ -40,6 +40,22 @@ const GlobalStyles: GlobalStyleComponent<
         background-color: ${theme.colors.mainBg};
       `}
     }
+
+    h1,
+    h2 {
+      margin-bottom: ${theme.spacings.medium};
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: ${theme.spacings.small};
+    }
+
+    p {
+      margin-bottom: ${theme.spacings.xsmall};
+    }
   `}
 
 `

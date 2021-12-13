@@ -6,4 +6,4 @@ export default {
   component: DomainResults
 } as Meta
 
-export const Default: Story = () => <DomainResults />
+export const Default: Story = () => <DomainResults setOpenAlert={() => true} />

@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react'
-import Base from 'templates/Base'
-import { Container } from 'components/Container'
 import { socket } from 'config/web-sockets'
 import { useSession } from 'next-auth/client'
-
-import DomainSearch, { SearchOptionsProps } from 'components/DomainSearch'
-import DomainResults from 'components/DomainResults'
+import Link from 'next/link'
 
 import * as S from './styles'
+
+import Base from 'templates/Base'
+import { Container } from 'components/Container'
+import DomainSearch, { SearchOptionsProps } from 'components/DomainSearch'
+import DomainResults from 'components/DomainResults'
 import ResultsHeader from 'components/ResultsHeader'
+import Popup from 'components/Popup'
+import Button from 'components/Button'
+import MediaMatch from 'components/MediaMatch'
 
 export type HomeTemplateProps = {
   searchOptions: SearchOptionsProps[]
@@ -43,6 +47,8 @@ const HomeTemplate = ({
   const [values, setValues] = useState<SearchValues>(initialValues)
   const [hideTaken, setHideTaken] = useState(false)
   const [dataList, setDataList] = useState([])
+  const [openAlert, setOpenAlert] = useState(false)
+  const [registerAlert, setRegisterAlert] = useState(false)
 
   const fetchData = async (values: SearchValues): Promise<boolean> => {
     return new Promise((resolve) => {
@@ -131,9 +137,75 @@ const HomeTemplate = ({
     socket.disconnect()
   }, [])
 
+  const handleCreateAlert = () => {
+    if (session?.user?.name) {
+      setRegisterAlert(true)
+    }
+  }
+
   return (
     <Base>
       <Container>
+        {openAlert && (
+          <Popup setIsOpen={setOpenAlert} isOpen={openAlert}>
+            {registerAlert ? (
+              <>
+                <h1>Thank you for your interest</h1>
+                <p>
+                  Alerts are on the horizon! This feature is in the works.
+                  <br />
+                  We&apos;ll send you a message once it&apos;s ready.
+                </p>
+                <p>
+                  Stay tuned, the perfect domain name will soon be in our
+                  hands...
+                </p>
+              </>
+            ) : (
+              <>
+                <MediaMatch greaterThan="small">
+                  <h1>
+                    We will get you the perfect
+                    <br /> {values.word} domain!
+                  </h1>
+                </MediaMatch>
+                <MediaMatch lessThan="small">
+                  <h2>
+                    Get the perfect
+                    <br /> {values.word} domain!
+                  </h2>
+                </MediaMatch>
+                <h3>Snatch premium domains worth thousands of $$$!</h3>
+                <p>
+                  For only <strong>$9/month</strong>, we will monitor every
+                  domain in this list and send you a notification when they
+                  become available.
+                </p>
+                {session?.user?.name ? (
+                  <div>
+                    <Button size="large" onClick={handleCreateAlert}>
+                      Get Daily Alerts!
+                    </Button>
+                  </div>
+                ) : (
+                  <>
+                    <p>You need to be logged in to create an alert.</p>
+                    <div>
+                      <Link href="/sign-in" passHref>
+                        <Button as="a" outline>
+                          Log in
+                        </Button>
+                      </Link>{' '}
+                      <Link href="/sign-up" passHref>
+                        <Button as="a">Sign up</Button>
+                      </Link>
+                    </div>
+                  </>
+                )}
+              </>
+            )}
+          </Popup>
+        )}
         <S.Wrapper>
           <DomainSearch
             searchOptions={searchOptions}
@@ -154,6 +226,7 @@ const HomeTemplate = ({
             session={session}
             hideTaken={hideTaken}
             searching={searching}
+            setOpenAlert={setOpenAlert}
           />
         </S.Wrapper>
       </Container>

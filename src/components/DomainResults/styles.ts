@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import media from 'styled-media-query'
 
 export const Results = styled.ul`
   max-width: 96rem;
@@ -11,7 +12,6 @@ export const Results = styled.ul`
 `
 
 export const Notice = styled.div`
-  height: 68px;
   left: 242px;
   top: 574px;
   color: #000;
@@ -23,4 +23,18 @@ export const Notice = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 24px;
+  flex-direction: column;
+
+  > div {
+    margin-top: ${({ theme }) => theme.spacings.xsmall};
+  }
+
+  ${media.greaterThan('small')`
+    height: 68px;
+    flex-direction: row;
+
+    > div {
+      margin-top: 0;
+    }
+  `}
 `

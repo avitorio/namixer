@@ -6,7 +6,11 @@ import ResultsHeader from '.'
 describe('<ResultsHeader />', () => {
   it('should render the heading', () => {
     const { container } = render(
-      <ResultsHeader results={results} setHideTaken={() => false} />
+      <ResultsHeader
+        results={results}
+        setHideTaken={() => false}
+        hideTaken={false}
+      />
     )
 
     expect(container.firstChild).toMatchSnapshot()

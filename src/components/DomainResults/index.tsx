@@ -1,14 +1,15 @@
 import Button from 'components/Button'
-import Domain from 'components/Domain'
 import { Session } from 'next-auth'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { SearchResults } from 'templates/Home'
 import Link from 'next/link'
 import * as S from './styles'
+import Domain from 'components/Domain'
 
 export type DomainResultsProps = {
   results?: SearchResults[]
   onSubmit?: () => Promise<void>
+  setOpenAlert: (open: boolean) => void
   hasNextPage?: boolean
   searching?: boolean
   session?: Session | null
@@ -21,7 +22,8 @@ const DomainResults = ({
   hasNextPage = false,
   searching = false,
   session = null,
-  hideTaken = false
+  hideTaken = false,
+  setOpenAlert
 }: DomainResultsProps) => {
   return (
     <S.Results>
@@ -34,10 +36,22 @@ const DomainResults = ({
         {results.map((result) => {
           if (hideTaken) {
             if (result.status !== 'taken') {
-              return <Domain {...result} key={result.domain} />
+              return (
+                <Domain
+                  {...result}
+                  key={result.domain}
+                  setOpenAlert={setOpenAlert}
+                />
+              )
             }
           } else {
-            return <Domain {...result} key={result.domain} />
+            return (
+              <Domain
+                {...result}
+                key={result.domain}
+                setOpenAlert={setOpenAlert}
+              />
+            )
           }
         })}
       </InfiniteScroll>
