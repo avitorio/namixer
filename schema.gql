@@ -70,6 +70,499 @@ type UserPermissionsPasswordPayload {
   ok: Boolean!
 }
 
+type AlertKeywords {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  keyword: String
+}
+
+type AlertKeywordsConnection {
+  values: [AlertKeywords]
+  groupBy: AlertKeywordsGroupBy
+  aggregate: AlertKeywordsAggregator
+}
+
+type AlertKeywordsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type AlertKeywordsGroupBy {
+  id: [AlertKeywordsConnectionId]
+  created_at: [AlertKeywordsConnectionCreated_at]
+  updated_at: [AlertKeywordsConnectionUpdated_at]
+  keyword: [AlertKeywordsConnectionKeyword]
+}
+
+type AlertKeywordsConnectionId {
+  key: ID
+  connection: AlertKeywordsConnection
+}
+
+type AlertKeywordsConnectionCreated_at {
+  key: DateTime
+  connection: AlertKeywordsConnection
+}
+
+type AlertKeywordsConnectionUpdated_at {
+  key: DateTime
+  connection: AlertKeywordsConnection
+}
+
+type AlertKeywordsConnectionKeyword {
+  key: String
+  connection: AlertKeywordsConnection
+}
+
+input AlertKeywordInput {
+  keyword: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editAlertKeywordInput {
+  keyword: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createAlertKeywordInput {
+  data: AlertKeywordInput
+}
+
+type createAlertKeywordPayload {
+  alertKeyword: AlertKeywords
+}
+
+input updateAlertKeywordInput {
+  where: InputID
+  data: editAlertKeywordInput
+}
+
+type updateAlertKeywordPayload {
+  alertKeyword: AlertKeywords
+}
+
+input deleteAlertKeywordInput {
+  where: InputID
+}
+
+type deleteAlertKeywordPayload {
+  alertKeyword: AlertKeywords
+}
+
+type Alert {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  user: UsersPermissionsUser
+  keywords(sort: String, limit: Int, start: Int, where: JSON): [AlertKeywords!]!
+}
+
+type AlertConnection {
+  values: [Alert]
+  groupBy: AlertGroupBy
+  aggregate: AlertAggregator
+}
+
+type AlertAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type AlertGroupBy {
+  id: [AlertConnectionId]
+  created_at: [AlertConnectionCreated_at]
+  updated_at: [AlertConnectionUpdated_at]
+  user: [AlertConnectionUser]
+}
+
+type AlertConnectionId {
+  key: ID
+  connection: AlertConnection
+}
+
+type AlertConnectionCreated_at {
+  key: DateTime
+  connection: AlertConnection
+}
+
+type AlertConnectionUpdated_at {
+  key: DateTime
+  connection: AlertConnection
+}
+
+type AlertConnectionUser {
+  key: ID
+  connection: AlertConnection
+}
+
+input AlertInput {
+  user: ID
+  keywords: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editAlertInput {
+  user: ID
+  keywords: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createAlertInput {
+  data: AlertInput
+}
+
+type createAlertPayload {
+  alert: Alert
+}
+
+input updateAlertInput {
+  where: InputID
+  data: editAlertInput
+}
+
+type updateAlertPayload {
+  alert: Alert
+}
+
+input deleteAlertInput {
+  where: InputID
+}
+
+type deleteAlertPayload {
+  alert: Alert
+}
+
+enum ENUM_DOMAINS_STATUS {
+  available
+  taken
+  unknown
+}
+
+type Domains {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  domain: String!
+  tl_d: Tlds
+  status: ENUM_DOMAINS_STATUS
+  searches(sort: String, limit: Int, start: Int, where: JSON): [Search!]!
+}
+
+type DomainsConnection {
+  values: [Domains]
+  groupBy: DomainsGroupBy
+  aggregate: DomainsAggregator
+}
+
+type DomainsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type DomainsGroupBy {
+  id: [DomainsConnectionId]
+  created_at: [DomainsConnectionCreated_at]
+  updated_at: [DomainsConnectionUpdated_at]
+  domain: [DomainsConnectionDomain]
+  tl_d: [DomainsConnectionTl_d]
+  status: [DomainsConnectionStatus]
+}
+
+type DomainsConnectionId {
+  key: ID
+  connection: DomainsConnection
+}
+
+type DomainsConnectionCreated_at {
+  key: DateTime
+  connection: DomainsConnection
+}
+
+type DomainsConnectionUpdated_at {
+  key: DateTime
+  connection: DomainsConnection
+}
+
+type DomainsConnectionDomain {
+  key: String
+  connection: DomainsConnection
+}
+
+type DomainsConnectionTl_d {
+  key: ID
+  connection: DomainsConnection
+}
+
+type DomainsConnectionStatus {
+  key: String
+  connection: DomainsConnection
+}
+
+input DomainInput {
+  domain: String!
+  tl_d: ID
+  searches: [ID]
+  status: ENUM_DOMAINS_STATUS
+  created_by: ID
+  updated_by: ID
+}
+
+input editDomainInput {
+  domain: String
+  tl_d: ID
+  searches: [ID]
+  status: ENUM_DOMAINS_STATUS
+  created_by: ID
+  updated_by: ID
+}
+
+input createDomainInput {
+  data: DomainInput
+}
+
+type createDomainPayload {
+  domain: Domains
+}
+
+input updateDomainInput {
+  where: InputID
+  data: editDomainInput
+}
+
+type updateDomainPayload {
+  domain: Domains
+}
+
+input deleteDomainInput {
+  where: InputID
+}
+
+type deleteDomainPayload {
+  domain: Domains
+}
+
+enum ENUM_SEARCH_TYPE {
+  alphabet
+  topwords
+  dictionary
+}
+
+enum ENUM_SEARCH_POSITION {
+  suffix
+  prefix
+}
+
+type Search {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  keyword: String!
+  type: ENUM_SEARCH_TYPE!
+  position: ENUM_SEARCH_POSITION
+  characters: Long
+  published_at: DateTime
+  domains(sort: String, limit: Int, start: Int, where: JSON): [Domains!]!
+}
+
+type SearchConnection {
+  values: [Search]
+  groupBy: SearchGroupBy
+  aggregate: SearchAggregator
+}
+
+type SearchAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type SearchGroupBy {
+  id: [SearchConnectionId]
+  created_at: [SearchConnectionCreated_at]
+  updated_at: [SearchConnectionUpdated_at]
+  keyword: [SearchConnectionKeyword]
+  type: [SearchConnectionType]
+  position: [SearchConnectionPosition]
+  characters: [SearchConnectionCharacters]
+  published_at: [SearchConnectionPublished_at]
+}
+
+type SearchConnectionId {
+  key: ID
+  connection: SearchConnection
+}
+
+type SearchConnectionCreated_at {
+  key: DateTime
+  connection: SearchConnection
+}
+
+type SearchConnectionUpdated_at {
+  key: DateTime
+  connection: SearchConnection
+}
+
+type SearchConnectionKeyword {
+  key: String
+  connection: SearchConnection
+}
+
+type SearchConnectionType {
+  key: String
+  connection: SearchConnection
+}
+
+type SearchConnectionPosition {
+  key: String
+  connection: SearchConnection
+}
+
+type SearchConnectionCharacters {
+  key: ID
+  connection: SearchConnection
+}
+
+type SearchConnectionPublished_at {
+  key: DateTime
+  connection: SearchConnection
+}
+
+input SearchInput {
+  keyword: String!
+  type: ENUM_SEARCH_TYPE!
+  position: ENUM_SEARCH_POSITION
+  characters: Long
+  domains: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editSearchInput {
+  keyword: String
+  type: ENUM_SEARCH_TYPE
+  position: ENUM_SEARCH_POSITION
+  characters: Long
+  domains: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createSearchInput {
+  data: SearchInput
+}
+
+type createSearchPayload {
+  search: Search
+}
+
+input updateSearchInput {
+  where: InputID
+  data: editSearchInput
+}
+
+type updateSearchPayload {
+  search: Search
+}
+
+input deleteSearchInput {
+  where: InputID
+}
+
+type deleteSearchPayload {
+  search: Search
+}
+
+type Tlds {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  TLD: String
+  domains(sort: String, limit: Int, start: Int, where: JSON): [Domains!]!
+}
+
+type TldsConnection {
+  values: [Tlds]
+  groupBy: TldsGroupBy
+  aggregate: TldsAggregator
+}
+
+type TldsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type TldsGroupBy {
+  id: [TldsConnectionId]
+  created_at: [TldsConnectionCreated_at]
+  updated_at: [TldsConnectionUpdated_at]
+  TLD: [TldsConnectionTLD]
+}
+
+type TldsConnectionId {
+  key: ID
+  connection: TldsConnection
+}
+
+type TldsConnectionCreated_at {
+  key: DateTime
+  connection: TldsConnection
+}
+
+type TldsConnectionUpdated_at {
+  key: DateTime
+  connection: TldsConnection
+}
+
+type TldsConnectionTLD {
+  key: String
+  connection: TldsConnection
+}
+
+input TldInput {
+  TLD: String
+  domains: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editTldInput {
+  TLD: String
+  domains: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createTldInput {
+  data: TldInput
+}
+
+type createTldPayload {
+  tld: Tlds
+}
+
+input updateTldInput {
+  where: InputID
+  data: editTldInput
+}
+
+type updateTldPayload {
+  tld: Tlds
+}
+
+input deleteTldInput {
+  where: InputID
+}
+
+type deleteTldPayload {
+  tld: Tlds
+}
+
 type EmailDesignerEmailTemplate {
   id: ID!
   created_at: DateTime!
@@ -555,7 +1048,7 @@ type deleteUserPayload {
   user: UsersPermissionsUser
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | EmailDesignerEmailTemplate | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | AlertKeywords | AlertKeywordsConnection | AlertKeywordsAggregator | AlertKeywordsGroupBy | AlertKeywordsConnectionId | AlertKeywordsConnectionCreated_at | AlertKeywordsConnectionUpdated_at | AlertKeywordsConnectionKeyword | createAlertKeywordPayload | updateAlertKeywordPayload | deleteAlertKeywordPayload | Alert | AlertConnection | AlertAggregator | AlertGroupBy | AlertConnectionId | AlertConnectionCreated_at | AlertConnectionUpdated_at | AlertConnectionUser | createAlertPayload | updateAlertPayload | deleteAlertPayload | Domains | DomainsConnection | DomainsAggregator | DomainsGroupBy | DomainsConnectionId | DomainsConnectionCreated_at | DomainsConnectionUpdated_at | DomainsConnectionDomain | DomainsConnectionTl_d | DomainsConnectionStatus | createDomainPayload | updateDomainPayload | deleteDomainPayload | Search | SearchConnection | SearchAggregator | SearchGroupBy | SearchConnectionId | SearchConnectionCreated_at | SearchConnectionUpdated_at | SearchConnectionKeyword | SearchConnectionType | SearchConnectionPosition | SearchConnectionCharacters | SearchConnectionPublished_at | createSearchPayload | updateSearchPayload | deleteSearchPayload | Tlds | TldsConnection | TldsAggregator | TldsGroupBy | TldsConnectionId | TldsConnectionCreated_at | TldsConnectionUpdated_at | TldsConnectionTLD | createTldPayload | updateTldPayload | deleteTldPayload | EmailDesignerEmailTemplate | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload
 
 input InputID {
   id: ID!
@@ -574,6 +1067,21 @@ type AdminUser {
 }
 
 type Query {
+  alertKeyword(id: ID!, publicationState: PublicationState): AlertKeywords
+  alertKeywords(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [AlertKeywords!]!
+  alertKeywordsConnection(sort: String, limit: Int, start: Int, where: JSON): AlertKeywordsConnection
+  alert(id: ID!, publicationState: PublicationState): Alert
+  alerts(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Alert!]!
+  alertsConnection(sort: String, limit: Int, start: Int, where: JSON): AlertConnection
+  domain(id: ID!, publicationState: PublicationState): Domains
+  domains(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Domains!]!
+  domainsConnection(sort: String, limit: Int, start: Int, where: JSON): DomainsConnection
+  search(id: ID!, publicationState: PublicationState): Search
+  searches(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Search!]!
+  searchesConnection(sort: String, limit: Int, start: Int, where: JSON): SearchConnection
+  tld(id: ID!, publicationState: PublicationState): Tlds
+  tlds(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Tlds!]!
+  tldsConnection(sort: String, limit: Int, start: Int, where: JSON): TldsConnection
   files(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UploadFile!]!
   filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
   role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
@@ -587,6 +1095,21 @@ type Query {
 }
 
 type Mutation {
+  createAlertKeyword(input: createAlertKeywordInput): createAlertKeywordPayload
+  updateAlertKeyword(input: updateAlertKeywordInput): updateAlertKeywordPayload
+  deleteAlertKeyword(input: deleteAlertKeywordInput): deleteAlertKeywordPayload
+  createAlert(input: createAlertInput): createAlertPayload
+  updateAlert(input: updateAlertInput): updateAlertPayload
+  deleteAlert(input: deleteAlertInput): deleteAlertPayload
+  createDomain(input: createDomainInput): createDomainPayload
+  updateDomain(input: updateDomainInput): updateDomainPayload
+  deleteDomain(input: deleteDomainInput): deleteDomainPayload
+  createSearch(input: createSearchInput): createSearchPayload
+  updateSearch(input: updateSearchInput): updateSearchPayload
+  deleteSearch(input: deleteSearchInput): deleteSearchPayload
+  createTld(input: createTldInput): createTldPayload
+  updateTld(input: updateTldInput): updateTldPayload
+  deleteTld(input: deleteTldInput): deleteTldPayload
   """Delete one file"""
   deleteFile(input: deleteFileInput): deleteFilePayload
   """Create a new role"""
