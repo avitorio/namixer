@@ -33,7 +33,7 @@ const Domain = ({ domain, status, setOpenAlert }: DomainProps) => {
             <S.Loading />
           </span>
         )}
-        {status === 'available' && <Button size="small">Register</Button>}
+        {status === 'available' && <Button size="small">Register it!</Button>}
       </div>
     </S.DomainRow>
   )

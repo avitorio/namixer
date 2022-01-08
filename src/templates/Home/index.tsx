@@ -13,6 +13,7 @@ import ResultsHeader from 'components/ResultsHeader'
 import Popup from 'components/Popup'
 import Button from 'components/Button'
 import MediaMatch from 'components/MediaMatch'
+import theme from 'styles/theme'
 
 export type HomeTemplateProps = {
   searchOptions: SearchOptionsProps[]
@@ -166,13 +167,21 @@ const HomeTemplate = ({
                 <MediaMatch greaterThan="small">
                   <h1>
                     We will get you the perfect
-                    <br /> {values.word} domain!
+                    <br />{' '}
+                    <span style={{ color: theme.colors.primary }}>
+                      {values.word}
+                    </span>{' '}
+                    domain!
                   </h1>
                 </MediaMatch>
                 <MediaMatch lessThan="small">
                   <h2>
                     Get the perfect
-                    <br /> {values.word} domain!
+                    <br />
+                    <span style={{ color: theme.colors.primary }}>
+                      {values.word}
+                    </span>{' '}
+                    domain!
                   </h2>
                 </MediaMatch>
                 <h3>Snatch premium domains worth thousands of $$$!</h3>
