@@ -36,6 +36,6 @@ describe('User', () => {
     cy.location('href').should('eq', `${Cypress.config().baseUrl}/profile/me`)
 
     cy.findByLabelText(/username/i).should('have.value', 'cypress')
-    cy.findByLabelText(/e-mail/i).should('have.value', 'e2e@namelazy.com')
+    cy.findByLabelText(/e-mail/i).should('have.value', 'e2e@namixer.com')
   });
 });

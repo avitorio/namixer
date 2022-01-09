@@ -15,7 +15,7 @@ const Footer = () => (
           Contact Us
         </Heading>
 
-        <a href="mailto:sac@namelazy.com">sac@namelazy.com</a>
+        <a href="mailto:sac@namixer.com">sac@namixer.com</a>
       </S.Column>
 
       <S.Column aria-labelledby="social-media">
@@ -83,7 +83,7 @@ const Footer = () => (
       </S.Column>
     </S.Content>
 
-    <S.Copyright>Namelazy {currentYear} © All rights reserved.</S.Copyright>
+    <S.Copyright>Namixer {currentYear} © All rights reserved.</S.Copyright>
   </S.Wrapper>
 )
 

@@ -6,7 +6,7 @@ describe('<Container />', () => {
   it('should render the heading', () => {
     const { container } = render(
       <Container>
-        <span>Namelazy</span>
+        <span>Namixer</span>
       </Container>
     )
 
@@ -29,7 +29,7 @@ describe('<Container />', () => {
   class="c0"
 >
   <span>
-    Namelazy
+    Namixer
   </span>
 </div>
 `)

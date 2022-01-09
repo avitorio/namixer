@@ -17,7 +17,7 @@ const Auth = ({ title, children }: AuthProps) => (
     <S.BannerBlock>
       <Image
         src="/img/auth-bg.jpg"
-        alt="Namelazy Auth Page"
+        alt="Namixer Auth Page"
         layout="fill"
         objectFit="cover"
       />
@@ -29,14 +29,16 @@ const Auth = ({ title, children }: AuthProps) => (
         </Link>
 
         <div>
-          <Heading size="huge">All your favorite games in one place</Heading>
+          <Heading size="huge">
+            Amazing, unique and catchy domain names.
+          </Heading>
           <S.Subtitle>
-            <strong>WON</strong> is the best and most complete gaming platform.
+            <strong>Namixer</strong> makes you memorable.
           </S.Subtitle>
         </div>
 
         <S.Footer>
-          Namelazy {currentYear} © Todos os Direitos Reservados
+          Namixer {currentYear} © Todos os Direitos Reservados
         </S.Footer>
       </S.BannerContent>
     </S.BannerBlock>

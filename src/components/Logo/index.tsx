@@ -19,7 +19,7 @@ const Logo = ({
       fill="none"
       viewBox="0 0 158 48"
       role="img"
-      aria-label="Namelazy"
+      aria-label="Namixer"
     >
       <path
         fill={`url(#paint_linear_${id})`}

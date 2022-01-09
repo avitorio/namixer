@@ -14,7 +14,7 @@ describe('<Menu />', () => {
     render(<Menu />)
 
     expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument()
-    expect(screen.getByRole('img', { name: /namelazy/i })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: /namixer/i })).toBeInTheDocument()
   })
 
   it('should handle the open/close mobile menu', () => {
