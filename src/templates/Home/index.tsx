@@ -99,9 +99,17 @@ const HomeTemplate = ({
 
     const data = await res.json()
 
+    if (data.list.length === 0) {
+      setHasNextPage(false)
+      setSearching(false)
+      setResults([])
+      return
+    }
+
     if (!session?.user?.name && values.type === 'alphabet') {
       data.list = data.list.slice(0, 30)
     }
+
     data.list.forEach((domain: string) => {
       setResults((results) => [...results, { domain, status: 'searching' }])
     })

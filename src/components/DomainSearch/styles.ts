@@ -107,3 +107,9 @@ export const Select = styled.select`
     }
   `}
 `
+
+export const ErrorMessage = styled.div`
+  ${({ theme }) => css`
+    color: ${theme.colors.primary};
+  `}
+`

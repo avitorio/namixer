@@ -9,6 +9,7 @@ import * as S from './styles'
 import Select from 'components/Select'
 import { FormLoading } from 'components/Form'
 import MediaMatch from 'components/MediaMatch'
+import isAlphaNumeric from 'utils/isAlphanumeric'
 
 export type SearchOptionsProps = {
   title: string
@@ -65,14 +66,23 @@ const DomainSearch = ({
 
   const checkForErrors = () => {
     if (values.word === '') {
-      setError('Please enter a word')
+      setError('Please, type in a word, ex: magical')
       setPlaceholderText('Please, type in a word, ex: magical')
+      return true
     }
+
+    if (!isAlphaNumeric(String(values.word))) {
+      setError('Please, use alphanumeric characters.')
+      return true
+    }
+
+    return false
   }
 
   const handleFilter = (fetchMore = false) => {
-    checkForErrors()
-    if (values.word !== '') {
+    const hasErrors = checkForErrors()
+    if (!hasErrors) {
+      console.log('clicked')
       onSubmit(values, fetchMore)
     }
   }
@@ -114,6 +124,8 @@ const DomainSearch = ({
             {searching ? <FormLoading /> : <SearchIcon />}
           </Button>
         </MediaMatch>
+
+        <S.ErrorMessage>{error}</S.ErrorMessage>
       </S.MainSearch>
 
       <S.SearchOptions>

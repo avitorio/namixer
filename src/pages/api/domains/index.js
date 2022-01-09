@@ -2,6 +2,7 @@ import readline from 'readline'
 import fs from 'fs'
 import { vowels, alphabet, consonants } from './lists/characters'
 import { popPrefixTxt, popSuffixTxt, wordsTxt } from './lists/lists'
+import isAlphanumeric from '../../../utils/isAlphanumeric'
 
 const pageLimit = 30
 
@@ -128,6 +129,10 @@ async function handler(req, res) {
   const list = []
   const tld = '.com'
   const { type, word, order, line, size } = req.query
+  const validWord = isAlphanumeric(word)
+  if (!validWord) {
+    return res.status(400).json({ list: [] })
+  }
   const split = word.split(' ')
   const newSplit = split.map((splitWord) => {
     return splitWord.charAt(0).toUpperCase() + splitWord.slice(1).toLowerCase()
