@@ -33,7 +33,16 @@ const Domain = ({ domain, status, setOpenAlert }: DomainProps) => {
             <S.Loading />
           </span>
         )}
-        {status === 'available' && <Button size="small">Register it!</Button>}
+        {status === 'available' && (
+          <Button
+            as="a"
+            size="small"
+            href={`http://www.anrdoezrs.net/links/100555377/type/dlg/https://www.namecheap.com/domains/registration/results.aspx?domain=${domain}`}
+            target="_blank"
+          >
+            Register it!
+          </Button>
+        )}
       </div>
     </S.DomainRow>
   )

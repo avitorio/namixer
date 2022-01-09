@@ -125,13 +125,15 @@ exports[`<Domain /> should render the heading 1`] = `
     </div>
   </div>
   <div>
-    <button
+    <a
       class="c3"
+      href="http://www.anrdoezrs.net/links/100555377/type/dlg/https://www.namecheap.com/domains/registration/results.aspx?domain=namixer.com"
+      target="_blank"
     >
       <span>
         Register it!
       </span>
-    </button>
+    </a>
   </div>
 </li>
 `
