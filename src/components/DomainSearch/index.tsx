@@ -82,7 +82,6 @@ const DomainSearch = ({
   const handleFilter = (fetchMore = false) => {
     const hasErrors = checkForErrors()
     if (!hasErrors) {
-      console.log('clicked')
       onSubmit(values, fetchMore)
     }
   }
