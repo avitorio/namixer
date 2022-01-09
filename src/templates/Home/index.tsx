@@ -138,8 +138,19 @@ const HomeTemplate = ({
     socket.disconnect()
   }, [])
 
-  const handleCreateAlert = () => {
+  const handleCreateAlert = async () => {
     if (session?.user?.name) {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/alerts`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session?.jwt}`
+        },
+        body: JSON.stringify({
+          keyword: values.word
+        })
+      })
+
       setRegisterAlert(true)
     }
   }
