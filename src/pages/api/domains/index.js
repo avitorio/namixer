@@ -18,8 +18,11 @@ const addCharacter = (
   word,
   startsWithWord = true,
   size = 1,
-  iteration = 0
+  iteration = 0,
+  start = 0
 ) => {
+  // The 1 is added to avoid module always returning 0 when checking for 30
+  let stop = start + pageLimit + 1
   size = size > 2 ? 2 : size
   let lettersArray
 
@@ -27,7 +30,6 @@ const addCharacter = (
   const hasEdgeVowel = checkEdgeVowel(1, startsWithWord, word)
 
   // Check if second or second last word is vowel
-
   const hasNextEdgeVowel = checkEdgeVowel(2, startsWithWord, word)
 
   // If the client wants to add just one letter after their word
@@ -41,22 +43,37 @@ const addCharacter = (
     lettersArray = hasEdgeVowel ? alphabet : vowels
   }
 
-  const list = lettersArray.map((letter) => {
+  const list = lettersArray.every((letter) => {
     const newWord = startsWithWord ? `${word + letter}` : `${letter + word}`
     if (size && size > 1) {
-      addCharacter(array, tld, newWord, startsWithWord, size - 1, iteration + 1)
+      addCharacter(
+        array,
+        tld,
+        newWord,
+        startsWithWord,
+        size - 1,
+        iteration + 1,
+        start
+      )
     }
-    if (iteration === 0) {
+    if (iteration === 0 && size <= 1) {
       array.push(newWord + tld)
+      return true
     } else if (
       checkEdgeVowel(1, startsWithWord, newWord) ||
       checkEdgeVowel(2, startsWithWord, newWord)
     ) {
       // Only check domains that have at least 1 vowel in its last 2 characters
-      array.push(newWord + tld)
+      if (array.length < stop) {
+        if (iteration === 1) {
+          array.push(newWord + tld)
+        }
+        return true
+      } else {
+        return false
+      }
     }
   })
-
   return list
 }
 
@@ -140,7 +157,19 @@ async function handler(req, res) {
 
   const escapedWord = newSplit.join('')
   if (type === 'alphabet') {
-    addCharacter(list, tld, escapedWord, order === 'suffix', size)
+    addCharacter(
+      list,
+      tld,
+      escapedWord,
+      order === 'suffix',
+      size,
+      0,
+      parseInt(line)
+    )
+
+    // Only return max 31 items
+    let listRemainder = list.length % 31 ? list.length % 31 : 31
+    list.splice(0, list.length - listRemainder)
   } else if (type === 'topWords') {
     await topWordsMixer(list, escapedWord, tld, order, parseInt(line))
   } else if (type === 'dictionary') {

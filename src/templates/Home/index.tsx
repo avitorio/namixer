@@ -119,7 +119,13 @@ const HomeTemplate = ({
       () => {
         // If the API returns less than 30 items then we've reached the end of a list
         if (session?.user?.name && data.list.length >= 30) {
-          setHasNextPage(values.type !== 'alphabet')
+          setHasNextPage(
+            values.type !== 'alphabet'
+              ? true
+              : values.size === '1'
+              ? false
+              : true
+          )
         }
         setSearching(false)
       }

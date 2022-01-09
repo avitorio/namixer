@@ -24,6 +24,7 @@ export const Notice = styled.div`
   justify-content: space-between;
   padding: 24px;
   flex-direction: column;
+  margin-bottom: ${({ theme }) => theme.spacings.small};
 
   > div {
     margin-top: ${({ theme }) => theme.spacings.xsmall};
