@@ -23,9 +23,10 @@ describe('<Empty />', () => {
 
     expect(screen.getByText(/a simple description/i)).toBeInTheDocument()
 
-    expect(
-      screen.getByRole('link', { name: /go back to store/i })
-    ).toHaveAttribute('href', '/')
+    expect(screen.getByRole('link', { name: /go back home/i })).toHaveAttribute(
+      'href',
+      '/'
+    )
 
     expect(container.parentElement).toMatchSnapshot()
   })

@@ -3,23 +3,38 @@ import { darken } from 'polished'
 
 import * as HeadingStyles from 'components/Heading/styles'
 import { Container } from 'components/Container'
+import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
-  padding: 8rem 0;
-  margin: 2rem 0;
-  background: white;
+  ${({ theme }) => css`
+    padding: 8rem 0;
+    margin: 2rem 0;
 
-  ${Container} {
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
+    margin-top: ${theme.spacings.large};
+    padding-bottom: ${theme.spacings.xsmall};
+    padding-top: ${theme.spacings.xxlarge};
+    background-color: ${theme.colors.white};
+    clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 100%);
 
-  ${HeadingStyles.Wrapper} {
-    text-transform: uppercase;
-  }
+    ${media.greaterThan('medium')`
+      padding-top: calc(${theme.spacings.xxlarge} * 2);
+      clip-path: polygon(0 15%, 100% 0%, 100% 100%, 0 100%);
+    `}
+
+    ${Container} {
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: ${theme.colors.white};
+      padding: 10rem 0;
+    }
+
+    ${HeadingStyles.Wrapper} {
+      text-transform: uppercase;
+    }
+  `}
 `
 
 export const Content = styled.div`

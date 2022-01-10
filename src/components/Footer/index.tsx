@@ -5,10 +5,11 @@ const currentYear = new Date().getFullYear()
 
 const Footer = () => (
   <S.Wrapper>
-    <Logo color="black" />
+    <Logo color="white" />
     <S.Content>
       <p>
-        Built by Andre Vitorio. Follow me on{' '}
+        Built by Andre Vitorio.
+        <br /> Follow me on{' '}
         <a href="https://twitter.com/andrevitorio">Twitter</a> and{' '}
         <a href="https://linkedin.com/in/andrevitorio">LinkedIn</a>.
       </p>

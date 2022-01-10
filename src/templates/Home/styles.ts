@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   color: #fff;
-  min-height: calc(100vh - 12rem);
+  min-height: calc(100vh - 15rem);
 
   ${media.greaterThan('medium')`
     min-height: calc(100vh - 23.6rem);

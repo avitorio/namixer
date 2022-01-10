@@ -8,7 +8,7 @@ export default function Page404() {
       <Container>
         <Empty
           title="404: Not found"
-          description="Ops...this page does not exist. Go back to the store and enjoy our offers."
+          description="Ops...this page does not exist."
           hasLink
         />
       </Container>
