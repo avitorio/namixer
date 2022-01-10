@@ -6,7 +6,7 @@ describe('<Logo />', () => {
   it('should render the logo with id passed', () => {
     const { container } = render(<Logo id="myId" />)
 
-    expect(container.querySelector('#paint_linear_myId')).toBeInTheDocument()
+    expect(container.querySelector('#myId')).toBeInTheDocument()
   })
 
   it('should render a white label by default', () => {
@@ -26,7 +26,7 @@ describe('<Logo />', () => {
   it('should render a normal logo when size is default', () => {
     render(<Logo />)
     expect(screen.getByLabelText(/Namixer/i).parentElement).toHaveStyle({
-      width: '11rem'
+      width: '15rem'
     })
   })
 

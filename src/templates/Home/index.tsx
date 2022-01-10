@@ -239,6 +239,11 @@ const HomeTemplate = ({
           </Popup>
         )}
         <S.Wrapper>
+          <S.MainTitle>Not all good domains are taken.</S.MainTitle>
+          <S.OpenParagraph>
+            Pick a word, select how you want to mix it and we’ll show you a list
+            of available domains. How does it work?
+          </S.OpenParagraph>
           <DomainSearch
             searchOptions={searchOptions}
             onSubmit={onSubmit}

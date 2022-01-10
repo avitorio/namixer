@@ -23,3 +23,25 @@ export const MainSearch = styled.section`
     `}
   `}
 `
+
+export const MainTitle = styled.h1`
+  ${({ theme }) => css`
+    font-size: 3.2rem;
+    line-height: 4rem;
+    margin-bottom: ${theme.spacings.xsmall};
+    text-align: center;
+
+    ${media.greaterThan('medium')`
+      font-size: 4.8rem;
+      line-height: 5.2rem;
+    `}
+  `}
+`
+
+export const OpenParagraph = styled.p`
+  max-width: 460px;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+  margin-bottom: 40px;
+`
