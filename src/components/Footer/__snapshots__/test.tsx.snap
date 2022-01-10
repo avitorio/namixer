@@ -1,75 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Footer /> should render 4 column topics 1`] = `
-.c5 {
-  color: #030517;
-  position: relative;
-  margin-bottom: 3.2rem;
-  font-size: 1.6rem;
-}
-
-.c5::after {
-  position: absolute;
-  left: 0;
-  bottom: -0.5rem;
-  content: '';
-  width: 5rem;
-  border-bottom: 0.5rem solid #C9FCC1;
-}
-
-.c5::after {
-  width: 3rem;
-}
-
 .c1 {
   color: #030517;
   width: 15rem;
   height: 3.3rem;
 }
 
-.c0 .c4 {
-  text-transform: uppercase;
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .c2 {
-  display: grid;
-  grid-template-columns: minmax(auto,50%) 1fr;
-  gap: 3.2rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   margin-top: 3.2rem;
 }
 
-.c3 a,
-.c3 span {
-  display: block;
-  color: #5c5c5c;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  margin-bottom: 0.8rem;
-  font-size: 1.6rem;
-}
-
-.c3 a {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-.c3 a:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.c6 {
+.c3 {
   color: #8F8F8F;
   font-size: 1.2rem;
   margin-top: 4.0rem;
   margin-bottom: 3.2rem;
   text-align: center;
-}
-
-@media (min-width:768px) {
-  .c2 {
-    grid-template-columns: repeat(4,1fr);
-  }
 }
 
 <footer
@@ -155,117 +132,26 @@ exports[`<Footer /> should render 4 column topics 1`] = `
   <div
     class="c2"
   >
-    <div
-      class="c3"
-    >
-      <h2
-        class="c4 c5"
-        color="black"
-      >
-        Contact Us
-      </h2>
+    <p>
+      Built by Andre Vitorio. Follow me on
+       
       <a
-        href="mailto:sac@namixer.com"
+        href="https://twitter.com/andrevitorio"
       >
-        sac@namixer.com
+        Twitter
       </a>
-    </div>
-    <div
-      aria-labelledby="social-media"
-      class="c3"
-    >
-      <h2
-        class="c4 c5"
-        color="black"
+       and
+       
+      <a
+        href="https://linkedin.com/in/andrevitorio"
       >
-        Follow us
-      </h2>
-      <nav
-        id="social-media"
-      >
-        <a
-          href="https://www.instagram.com/won-games"
-          rel="noopenner, noreferrer"
-          target="_blank"
-        >
-          Instagram
-        </a>
-        <a
-          href="https://www.twitter.com/won-games"
-          rel="noopenner, noreferrer"
-          target="_blank"
-        >
-          Twitter
-        </a>
-        <a
-          href="https://www.youtube.com/won-games"
-          rel="noopenner, noreferrer"
-          target="_blank"
-        >
-          Youtube
-        </a>
-        <a
-          href="https://www.facebook.com/won-games"
-          rel="noopenner, noreferrer"
-          target="_blank"
-        >
-          Facebook
-        </a>
-      </nav>
-    </div>
-    <div
-      aria-labelledby="resources"
-      class="c3"
-    >
-      <h2
-        class="c4 c5"
-        color="black"
-      >
-        Links
-      </h2>
-      <nav
-        id="resources"
-      >
-        <a
-          href="/"
-        >
-          Home
-        </a>
-        <a
-          href="/games"
-        >
-          Store
-        </a>
-        <a
-          href="/search"
-        >
-          Buscar
-        </a>
-      </nav>
-    </div>
-    <div
-      aria-label="contact"
-      class="c3"
-    >
-      <h2
-        class="c4 c5"
-        color="black"
-      >
-        Location
-      </h2>
-      <span>
-        Lorem ipsum dolor sit.
-      </span>
-      <span>
-        Lorem Ipsum
-      </span>
-      <span>
-        Lorem, ipsum dolor.
-      </span>
-    </div>
+        LinkedIn
+      </a>
+      .
+    </p>
   </div>
   <div
-    class="c6"
+    class="c3"
   >
     Namixer 
     2022

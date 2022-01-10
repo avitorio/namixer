@@ -14,6 +14,7 @@ import Popup from 'components/Popup'
 import Button from 'components/Button'
 import MediaMatch from 'components/MediaMatch'
 import theme from 'styles/theme'
+import HowItWorks from 'components/HowItWorks'
 
 export type HomeTemplateProps = {
   searchOptions: SearchOptionsProps[]
@@ -241,8 +242,9 @@ const HomeTemplate = ({
         <S.Wrapper>
           <S.MainTitle>Not all good domains are taken.</S.MainTitle>
           <S.OpenParagraph>
-            Pick a word, select how you want to mix it and we’ll show you a list
-            of available domains. How does it work?
+            Enter a keyword, select how you want to mix it and we’ll show you a
+            list of available domains.{' '}
+            <a href="#how-it-works">Learn how it works</a>.
           </S.OpenParagraph>
           <DomainSearch
             searchOptions={searchOptions}
@@ -267,6 +269,7 @@ const HomeTemplate = ({
           />
         </S.Wrapper>
       </Container>
+      <HowItWorks />
     </Base>
   )
 }

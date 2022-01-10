@@ -12,6 +12,8 @@ export const Wrapper = styled.menu<MenuFullProps>`
 `
 
 export const LogoWrapper = styled.div`
+  display: flex;
+  flex-grow: 1;
   ${media.lessThan('medium')`
     position: absolute;
     left: 50%;
@@ -31,7 +33,6 @@ export const IconWrapper = styled.div`
 export const MenuGroup = styled.div`
   ${({ theme }) => css`
     display: flex;
-    flex-grow: 1;
     justify-content: flex-end;
     align-items: center;
     z-index: ${theme.layers.menu} + 1;

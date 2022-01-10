@@ -8,6 +8,11 @@ export const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   color: #fff;
+  min-height: calc(100vh - 12rem);
+
+  ${media.greaterThan('medium')`
+    min-height: calc(100vh - 23.6rem);
+  `}
 `
 
 export const MainSearch = styled.section`
@@ -32,16 +37,20 @@ export const MainTitle = styled.h1`
     text-align: center;
 
     ${media.greaterThan('medium')`
-      font-size: 4.8rem;
-      line-height: 5.2rem;
+      font-size: 5.2rem;
+      line-height: 6.0rem;
     `}
   `}
 `
 
 export const OpenParagraph = styled.p`
-  max-width: 460px;
+  max-width: 550px;
   font-size: 18px;
   line-height: 28px;
   text-align: center;
   margin-bottom: 40px;
+
+  a {
+    color: #fff;
+  }
 `

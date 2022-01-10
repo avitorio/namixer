@@ -20,6 +20,14 @@ export const wrapperModifiers = {
     `}
   `,
 
+  large: (theme: DefaultTheme) => css`
+    font-size: ${theme.font.sizes.xxlarge};
+
+    ${media.greaterThan('medium')`
+      font-size: ${theme.font.sizes.xxxlarge};
+    `}
+  `,
+
   huge: (theme: DefaultTheme) => css`
     font-size: ${theme.font.sizes.huge};
   `,

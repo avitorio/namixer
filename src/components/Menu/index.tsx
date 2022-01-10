@@ -36,8 +36,8 @@ const Menu = ({ username, loading }: MenuProps) => {
 
       <MediaMatch greaterThan="medium">
         <S.MenuNav>
-          <Link href="/" passHref>
-            <S.MenuLink>Home</S.MenuLink>
+          <Link href="/#how-it-works" passHref>
+            <S.MenuLink>How does it work?</S.MenuLink>
           </Link>
         </S.MenuNav>
       </MediaMatch>
