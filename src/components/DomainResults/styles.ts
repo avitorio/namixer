@@ -39,3 +39,21 @@ export const Notice = styled.div`
     }
   `}
 `
+
+export const MoreDomains = styled.div`
+  position: relative;
+
+  li > div {
+    filter: blur(3px);
+    pointer-events: none;
+  }
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #030517 0%, rgba(255, 255, 255, 0) 100%);
+    top: 0;
+  }
+`

@@ -4,7 +4,7 @@ import { SearchResults } from 'templates/Home'
 import * as S from './styles'
 
 export type DomainProps = SearchResults & {
-  setOpenAlert: (open: boolean) => void
+  setOpenAlert?: (open: boolean) => void
 }
 
 const Domain = ({ domain, status, setOpenAlert }: DomainProps) => {
@@ -24,7 +24,11 @@ const Domain = ({ domain, status, setOpenAlert }: DomainProps) => {
       </S.Domain>
       <div>
         {status === 'taken' && (
-          <Button size="small" outline onClick={() => setOpenAlert(true)}>
+          <Button
+            size="small"
+            outline
+            onClick={() => setOpenAlert && setOpenAlert(true)}
+          >
             Create Alert
           </Button>
         )}

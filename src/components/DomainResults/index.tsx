@@ -56,19 +56,25 @@ const DomainResults = ({
         })}
       </InfiniteScroll>
       {results.length > 0 && !session?.user?.name && (
-        <S.Notice>
-          Want to access more results?
-          <div>
-            <Link href="/sign-in" passHref>
-              <Button as="a" outline>
-                Log in
-              </Button>
-            </Link>{' '}
-            <Link href="/sign-up" passHref>
-              <Button as="a">Sign up</Button>
-            </Link>
-          </div>
-        </S.Notice>
+        <>
+          <S.MoreDomains>
+            <Domain domain="NeverGonna.com" status="available" />
+            <Domain domain="GiveYouUp.com" status="available" />
+          </S.MoreDomains>
+          <S.Notice>
+            Want to access more results?
+            <div>
+              <Link href="/sign-in" passHref>
+                <Button as="a" outline>
+                  Log in
+                </Button>
+              </Link>{' '}
+              <Link href="/sign-up" passHref>
+                <Button as="a">Sign up</Button>
+              </Link>
+            </div>
+          </S.Notice>
+        </>
       )}
       {results.length > 0 && hasNextPage && !searching && (
         <S.Notice>Scroll down for more results.</S.Notice>
