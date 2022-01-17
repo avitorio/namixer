@@ -5,7 +5,7 @@ export default function HomePage(props: HomeTemplateProps) {
   return <HomeTemplate {...props} />
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   return {
     props: {
       searchOptions
