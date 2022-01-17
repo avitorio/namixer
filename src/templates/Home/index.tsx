@@ -90,11 +90,9 @@ const HomeTemplate = ({
     }
 
     const res = await fetch(
-      `http://localhost:3000/api/domains?word=${values.word}&type=${
-        values.type
-      }&order=${values.order}&size=${values.size}&line=${
-        fetchMore ? results.length : 0
-      }`
+      `/api/domains?word=${values.word}&type=${values.type}&order=${
+        values.order
+      }&size=${values.size}&line=${fetchMore ? results.length : 0}`
     )
 
     const data = await res.json()
