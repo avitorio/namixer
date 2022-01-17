@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Domain /> should render the heading 1`] = `
+exports[`<Domain /> should render the domain row 1`] = `
 .c3 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -125,7 +125,7 @@ exports[`<Domain /> should render the heading 1`] = `
     </div>
   </div>
   <div>
-    <a
+    <button
       class="c3"
       href="http://www.anrdoezrs.net/links/100555377/type/dlg/https://www.namecheap.com/domains/registration/results.aspx?domain=namixer.com"
       target="_blank"
@@ -133,7 +133,7 @@ exports[`<Domain /> should render the heading 1`] = `
       <span>
         Register it!
       </span>
-    </a>
+    </button>
   </div>
 </li>
 `

@@ -13,6 +13,7 @@ import Head from 'next/head'
 import GlobalStyles from 'styles/global'
 import theme from 'styles/theme'
 import { useApollo } from 'utils/apollo'
+import { AppProvider } from 'utils/appContext'
 
 function App({ Component, pageProps }: AppProps) {
   const client = useApollo(pageProps.initialApolloState)
@@ -39,7 +40,9 @@ function App({ Component, pageProps }: AppProps) {
             stopDelayMs={200}
             height={5}
           />
-          <Component {...pageProps} />
+          <AppProvider>
+            <Component {...pageProps} />
+          </AppProvider>
         </ThemeProvider>
       </ApolloProvider>
     </AuthProvider>

@@ -1,24 +1,50 @@
 import styled, { css } from 'styled-components'
+import media from 'styled-media-query'
 
 import * as HeadingStyles from 'components/Heading/styles'
 import { Container } from 'components/Container'
-import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
-  ${({ theme }) => css`
-    padding: 8rem 0;
-    margin: 2rem 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+`
 
-    margin-top: ${theme.spacings.large};
-    padding-bottom: ${theme.spacings.xsmall};
-    padding-top: ${theme.spacings.xxlarge};
-    background-color: ${theme.colors.white};
-    clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 100%);
+export const MainTitle = styled.h1`
+  ${({ theme }) => css`
+    font-size: 3.2rem;
+    line-height: 4rem;
+    margin-bottom: ${theme.spacings.xsmall};
+    text-align: center;
 
     ${media.greaterThan('medium')`
-      padding-top: calc(${theme.spacings.xxlarge} * 2);
-      clip-path: polygon(0 15%, 100% 0%, 100% 100%, 0 100%);
+      font-size: 5.2rem;
+      line-height: 6.0rem;
     `}
+  `}
+`
+
+export const Paragraph = styled.p`
+  max-width: 550px;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+  margin-bottom: 40px;
+
+  a {
+    color: #fff;
+  }
+`
+
+export const ContentWrapper = styled.div`
+  ${({ theme }) => css`
+    margin: 2rem 0;
+    padding-bottom: ${theme.spacings.xsmall};
+    background-color: ${theme.colors.white};
+    clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 100%);
 
     ${Container} {
       background: white;
@@ -27,7 +53,13 @@ export const Wrapper = styled.div`
       justify-content: center;
       flex-direction: column;
       background-color: ${theme.colors.white};
-      padding: 10rem 1.6rem;
+
+      padding: 8rem 1.6rem;
+
+      ${media.greaterThan('medium')`
+      padding: 5.6rem 1.6rem 10rem;
+
+      `}
     }
 
     ${HeadingStyles.Wrapper} {

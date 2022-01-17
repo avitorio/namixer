@@ -1,6 +1,8 @@
+import Router from 'next/router'
 import Button from 'components/Button'
 import MediaMatch from 'components/MediaMatch'
 import { SearchResults } from 'templates/Home'
+import { useAppContext } from 'utils/appContext'
 import * as S from './styles'
 
 export type DomainProps = SearchResults & {
@@ -8,6 +10,14 @@ export type DomainProps = SearchResults & {
 }
 
 const Domain = ({ domain, status, setOpenAlert }: DomainProps) => {
+  const appContext = useAppContext()
+
+  const handleRegisterDomain = () => {
+    console.log(domain)
+    appContext.setState({ domain })
+    Router.push('/dont-you-forget-about-me')
+  }
+
   return (
     <S.DomainRow status={status}>
       <S.Domain status={status}>
@@ -39,10 +49,10 @@ const Domain = ({ domain, status, setOpenAlert }: DomainProps) => {
         )}
         {status === 'available' && (
           <Button
-            as="a"
             size="small"
             href={`http://www.anrdoezrs.net/links/100555377/type/dlg/https://www.namecheap.com/domains/registration/results.aspx?domain=${domain}`}
             target="_blank"
+            onClick={handleRegisterDomain}
           >
             Register it!
           </Button>

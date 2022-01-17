@@ -36,13 +36,7 @@ const DomainResults = ({
         {results.map((result) => {
           if (hideTaken) {
             if (result.status !== 'taken') {
-              return (
-                <Domain
-                  {...result}
-                  key={result.domain}
-                  setOpenAlert={setOpenAlert}
-                />
-              )
+              return <Domain {...result} key={result.domain} />
             }
           } else {
             return (
