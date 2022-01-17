@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Footer /> should render 4 column topics 1`] = `
+exports[`<Footer /> should render the footer. 1`] = `
 .c1 {
   color: #FAFAFA;
   width: 15rem;
@@ -146,13 +146,18 @@ exports[`<Footer /> should render 4 column topics 1`] = `
        
       <a
         href="https://twitter.com/andrevitorio"
+        rel="noreferrer"
+        target="_blank"
       >
         Twitter
       </a>
-       and
+       
+      and
        
       <a
         href="https://linkedin.com/in/andrevitorio"
+        rel="noreferrer"
+        target="_blank"
       >
         LinkedIn
       </a>

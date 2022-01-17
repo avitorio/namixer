@@ -20,9 +20,22 @@ export default function DontYou() {
         It will probably be a while until you come back for your next project
         name, and since we had such a great time together, I&apos;d still like
         to stay in touch. So, feel free to send me a message on{' '}
-        <a href="https://twitter.com/andrevitorio">Twitter</a>, or{' '}
-        <a href="https://www.linkedin.com/in/andrevitorio/">LinkedIn</a>.
-        I&apos;d love to see what you make with {domain}!
+        <a
+          href="https://twitter.com/andrevitorio"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Twitter
+        </a>
+        , or{' '}
+        <a
+          href="https://www.linkedin.com/in/andrevitorio/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          LinkedIn
+        </a>
+        . I&apos;d love to see what you make with {domain}!
       </p>
       <p>Now that that&apos;s out of the way.</p>
       <p>

@@ -10,8 +10,22 @@ const Footer = () => (
       <p>
         Built by Andre Vitorio.
         <br /> Follow me on{' '}
-        <a href="https://twitter.com/andrevitorio">Twitter</a> and{' '}
-        <a href="https://linkedin.com/in/andrevitorio">LinkedIn</a>.
+        <a
+          href="https://twitter.com/andrevitorio"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Twitter
+        </a>{' '}
+        and{' '}
+        <a
+          href="https://linkedin.com/in/andrevitorio"
+          target="_blank"
+          rel="noreferrer"
+        >
+          LinkedIn
+        </a>
+        .
       </p>
     </S.Content>
 
