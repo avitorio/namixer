@@ -18,6 +18,15 @@ describe('<DomainSearch />', () => {
   let setValues = jest.fn()
   const values = { ...initialSearchValues, word: 'keyword' }
 
+  beforeAll(() => {
+    Object.defineProperty(window, 'gtag', {
+      writable: true,
+      value: jest.fn().mockImplementation(() => ({
+        event: jest.fn() // Deprecated
+      }))
+    })
+  })
+
   it('should render the search bar and button', () => {
     render(
       <DomainSearch

@@ -14,9 +14,26 @@ import GlobalStyles from 'styles/global'
 import theme from 'styles/theme'
 import { useApollo } from 'utils/apollo'
 import { AppProvider } from 'utils/appContext'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import { pageview } from 'utils/ga'
+
+const isProduction = process.env.NODE_ENV === 'production'
 
 function App({ Component, pageProps }: AppProps) {
   const client = useApollo(pageProps.initialApolloState)
+  const router = useRouter()
+
+  useEffect(() => {
+    const handleRouteChange = (url: URL) => {
+      /* invoke analytics function only for production */
+      if (isProduction) pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   return (
     <AuthProvider session={pageProps.session}>

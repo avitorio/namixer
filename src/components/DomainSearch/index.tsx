@@ -3,13 +3,14 @@ import { Search as SearchIcon } from '@styled-icons/material-outlined/Search'
 import Button from 'components/Button'
 import RadioButton from 'components/RadioButton'
 import SearchField from 'components/SearchField'
+import { FormLoading } from 'components/Form'
+import Select from 'components/Select'
+import MediaMatch from 'components/MediaMatch'
 import { SearchValues } from 'templates/Home'
 
 import * as S from './styles'
-import Select from 'components/Select'
-import { FormLoading } from 'components/Form'
-import MediaMatch from 'components/MediaMatch'
 import isAlphaNumeric from 'utils/isAlphanumeric'
+import { event } from 'utils/ga'
 
 export type SearchOptionsProps = {
   title: string
@@ -81,7 +82,14 @@ const DomainSearch = ({
 
   const handleFilter = (fetchMore = false) => {
     const hasErrors = checkForErrors()
+
     if (!hasErrors) {
+      event({
+        category: 'Search',
+        action: `${values.type}`,
+        label: `${values.word}`,
+        value: 0
+      })
       onSubmit(values, fetchMore)
     }
   }
