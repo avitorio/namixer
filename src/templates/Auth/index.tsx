@@ -37,9 +37,7 @@ const Auth = ({ title, children }: AuthProps) => (
           </S.Subtitle>
         </div>
 
-        <S.Footer>
-          Namixer {currentYear} © Todos os Direitos Reservados
-        </S.Footer>
+        <S.Footer>Namixer {currentYear} © All rights reserved.</S.Footer>
       </S.BannerContent>
     </S.BannerBlock>
 
