@@ -4,6 +4,7 @@ import MediaMatch from 'components/MediaMatch'
 import { SearchResults } from 'templates/Home'
 import { useAppContext } from 'utils/appContext'
 import * as S from './styles'
+import { event } from 'utils/ga'
 
 export type DomainProps = SearchResults & {
   setOpenAlert?: (open: boolean) => void
@@ -13,8 +14,15 @@ const Domain = ({ domain, status, setOpenAlert }: DomainProps) => {
   const appContext = useAppContext()
 
   const handleRegisterDomain = () => {
-    console.log(domain)
     appContext.setState({ domain })
+
+    event({
+      action: 'click_register',
+      category: 'register',
+      label: domain,
+      value: 0
+    })
+
     Router.push('/dont-you-forget-about-me')
   }
 

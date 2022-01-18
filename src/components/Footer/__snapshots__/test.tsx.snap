@@ -145,6 +145,7 @@ exports[`<Footer /> should render the footer. 1`] = `
        Follow me on
        
       <a
+        data-label="twitter"
         href="https://twitter.com/andrevitorio"
         rel="noreferrer"
         target="_blank"
@@ -155,6 +156,7 @@ exports[`<Footer /> should render the footer. 1`] = `
       and
        
       <a
+        data-label="linkedin"
         href="https://linkedin.com/in/andrevitorio"
         rel="noreferrer"
         target="_blank"

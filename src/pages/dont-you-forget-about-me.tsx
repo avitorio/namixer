@@ -1,9 +1,20 @@
 import Blog from 'templates/Blog'
 import { useAppContext } from 'utils/appContext'
+import { event } from 'utils/ga'
+import Link from 'next/link'
 
 export default function DontYou() {
   const { state } = useAppContext()
   const { domain } = state
+
+  const handleOutboundLink = (target: HTMLAnchorElement) => {
+    event({
+      action: 'outbound_link',
+      category: `${target.getAttribute('data-category')}`,
+      label: `${target.getAttribute('data-label')}`,
+      value: 0
+    })
+  }
 
   return (
     <Blog
@@ -24,6 +35,9 @@ export default function DontYou() {
           href="https://twitter.com/andrevitorio"
           target="_blank"
           rel="noreferrer"
+          data-category="social"
+          data-label="twitter"
+          onClick={(e) => handleOutboundLink(e.currentTarget)}
         >
           Twitter
         </a>
@@ -32,6 +46,9 @@ export default function DontYou() {
           href="https://www.linkedin.com/in/andrevitorio/"
           target="_blank"
           rel="noreferrer"
+          data-category="social"
+          data-label="linkedin"
+          onClick={(e) => handleOutboundLink(e.currentTarget)}
         >
           LinkedIn
         </a>
@@ -44,6 +61,9 @@ export default function DontYou() {
             href={`http://www.anrdoezrs.net/links/100555377/type/dlg/https://www.namecheap.com/domains/registration/results.aspx?domain=${domain}`}
             target="_blank"
             rel="noreferrer"
+            data-category="affiliate"
+            data-label="namecheap"
+            onClick={(e) => handleOutboundLink(e.currentTarget)}
           >
             Click here to register {domain}
           </a>{' '}
@@ -62,6 +82,9 @@ export default function DontYou() {
             href="https://webflow.grsm.io/namixer"
             target="_blank"
             rel="noreferrer"
+            data-category="affiliate"
+            data-label="webflow"
+            onClick={(e) => handleOutboundLink(e.currentTarget)}
           >
             Webflow
           </a>{' '}
@@ -71,13 +94,27 @@ export default function DontYou() {
       <h3>Design</h3>
       <ul>
         <li>
-          <a href="https://figma.com" target="_blank" rel="noreferrer">
+          <a
+            href="https://figma.com"
+            target="_blank"
+            rel="noreferrer"
+            data-category="outbound"
+            data-label="figma"
+            onClick={(e) => handleOutboundLink(e.currentTarget)}
+          >
             Figma
           </a>{' '}
           - Graphic and interface design.
         </li>
         <li>
-          <a href="https://canva.com" target="_blank" rel="noreferrer">
+          <a
+            href="https://canva.com"
+            target="_blank"
+            rel="noreferrer"
+            data-category="outbound"
+            data-label="canva"
+            onClick={(e) => handleOutboundLink(e.currentTarget)}
+          >
             Canva
           </a>{' '}
           - Easily create marketing material and social media posts.
@@ -90,6 +127,9 @@ export default function DontYou() {
             href="https://jarvis.ai?fpr=andre98"
             target="_blank"
             rel="noreferrer"
+            data-category="affiliate"
+            data-label="jarvis"
+            onClick={(e) => handleOutboundLink(e.currentTarget)}
           >
             Jarvis
           </a>{' '}
@@ -101,6 +141,9 @@ export default function DontYou() {
               href="https://jarvis.ai?fpr=andre98"
               target="_blank"
               rel="noreferrer"
+              data-category="affiliate"
+              data-label="jarvis"
+              onClick={(e) => handleOutboundLink(e.currentTarget)}
             >
               clicking here
             </a>
@@ -111,7 +154,14 @@ export default function DontYou() {
       <h3>Search Engine Optimization</h3>
       <ul>
         <li>
-          <a href="https://surferseo" target="_blank" rel="noreferrer">
+          <a
+            href="https://surferseo"
+            target="_blank"
+            rel="noreferrer"
+            data-category="outbound"
+            data-label="surferseo"
+            onClick={(e) => handleOutboundLink(e.currentTarget)}
+          >
             SurferSEO
           </a>{' '}
           - Use Surfer to generate content plans for any domain in a couple of
@@ -126,6 +176,9 @@ export default function DontYou() {
               href="https://m.do.co/c/d4611149d2ca"
               target="_blank"
               rel="noreferrer"
+              data-category="affiliate"
+              data-label="digitalocean"
+              onClick={(e) => handleOutboundLink(e.currentTarget)}
             >
               DigitalOcean
             </a>{' '}
@@ -142,12 +195,14 @@ export default function DontYou() {
           href="https://buymeacoffee.com/andrevitorio"
           target="_blank"
           rel="noreferrer"
+          data-category="affiliate"
+          data-label="buymeacoffee"
+          onClick={(e) => handleOutboundLink(e.currentTarget)}
         >
           buying me a coffee
         </a>
-        . I appreciate you taking the time to use{' '}
-        <a href="https://namixer.com">Namixer</a> and wish you all the success
-        in the world!
+        . I appreciate you taking the time to use <Link href="/">Namixer</Link>{' '}
+        and wish you all the success in the world!
       </p>
     </Blog>
   )
