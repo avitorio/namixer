@@ -1,3 +1,4 @@
+import * as Button from 'components/Button/styles'
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
@@ -31,4 +32,8 @@ export const ButtonContainer = styled.div`
   ${media.greaterThan('medium')`
     grid-column: 2;
   `}
+
+  ${Button.Wrapper} {
+    margin-right: 10px;
+  }
 `
