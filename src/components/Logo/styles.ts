@@ -16,7 +16,7 @@ const wrapperModifiers = {
 
   hideOnMobile: () => css`
     ${media.lessThan('medium')`
-      width: 5.8rem;
+      width: 4.5rem;;
       height: 4.5rem;
 
       svg {

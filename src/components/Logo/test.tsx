@@ -41,7 +41,7 @@ describe('<Logo />', () => {
     render(<Logo hideOnMobile />)
     expect(screen.getByLabelText(/Namixer/i).parentElement).toHaveStyleRule(
       'width',
-      '5.8rem',
+      '4.5rem',
       {
         media: '(max-width: 768px)'
       }
