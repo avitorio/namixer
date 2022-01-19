@@ -56,7 +56,9 @@ const DomainResults = ({
             <Domain domain="GiveYouUp.com" status="available" />
           </S.MoreDomains>
           <S.Notice>
-            Want to access more results?
+            <div>
+              Want to access more results? <strong>It&apos;s free!</strong>
+            </div>
             <div>
               <Link href="/sign-in" passHref>
                 <Button as="a" outline>
