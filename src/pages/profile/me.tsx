@@ -38,6 +38,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   })
 
   return {
-    props: { session, username: data.user?.username, email: data.user?.email }
+    props: {
+      session,
+      username: data.user?.username,
+      email: data.user?.email,
+      id: data.user?.id
+    }
   }
 }

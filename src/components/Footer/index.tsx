@@ -13,6 +13,7 @@ const Footer = () => {
       value: 0
     })
   }
+
   return (
     <S.Wrapper>
       <Logo color="white" />

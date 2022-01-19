@@ -56,6 +56,7 @@ const GlobalStyles: GlobalStyleComponent<
 
     p {
       margin-bottom: ${theme.spacings.xsmall};
+      line-height: 2.6rem;
     }
   `}
 
