@@ -7,7 +7,7 @@ export default {
     title: 'Namixer',
     images: [
       {
-        url: 'https://res.cloudinary.com/wongames/image/upload/v1619472565/won_games_og_fc420ed09b.png',
+        url: 'https://namixer.com/images/namixer-big-logo.png',
         width: 2560,
         height: 1440,
         alt: 'Namixer'
@@ -15,7 +15,7 @@ export default {
     ]
   },
   twitter: {
-    handle: '@Willian_justen',
+    handle: '@andrevitorio',
     site: '@site',
     cardType: 'summary_large_image'
   }

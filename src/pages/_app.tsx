@@ -46,7 +46,7 @@ function App({ Component, pageProps }: AppProps) {
             <link rel="manifest" href="/manifest.json" />
             <meta
               name="description"
-              content="The best Game Store in the world!"
+              content="Amazing, unique and catchy domain names."
             />
           </Head>
           <DefaultSeo {...SEO} />
