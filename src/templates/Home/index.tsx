@@ -125,7 +125,7 @@ const HomeTemplate = ({
               ? false
               : true
           )
-        } else if (data.list.length >= 30 && results.length <= 90) {
+        } else if (!fetchMore) {
           setHasNextPage(
             values.type !== 'alphabet'
               ? true
