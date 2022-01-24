@@ -125,6 +125,14 @@ const HomeTemplate = ({
               ? false
               : true
           )
+        } else if (data.list.length >= 30 && results.length <= 90) {
+          setHasNextPage(
+            values.type !== 'alphabet'
+              ? true
+              : values.size === '1'
+              ? false
+              : true
+          )
         }
         setSearching(false)
       }
