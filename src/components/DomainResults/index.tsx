@@ -32,6 +32,7 @@ const DomainResults = ({
         next={onSubmit}
         hasMore={hasNextPage}
         loader={<S.Notice>Looking for cool domains...</S.Notice>}
+        scrollThreshold={0.7}
       >
         {results.map((result) => {
           if (hideTaken) {
@@ -49,7 +50,7 @@ const DomainResults = ({
           }
         })}
       </InfiniteScroll>
-      {results.length > 0 && !session?.user?.name && (
+      {results.length >= 60 && !session?.user?.name && (
         <>
           <S.MoreDomains>
             <Domain domain="NeverGonna.com" status="available" />
