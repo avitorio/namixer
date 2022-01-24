@@ -24,7 +24,8 @@ export default function DontYou() {
     >
       <h3>I&apos;m glad you found {domain}, it looks pretty cool!</h3>
       <p>
-        This is an important step on your journey to build an awesome project.
+        Finding a good domain is an important step on your journey to build an
+        awesome project.
       </p>
       <h3>But while you&apos;re still here...</h3>
       <p>
