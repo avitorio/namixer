@@ -7,7 +7,7 @@ export default {
     title: 'Namixer',
     images: [
       {
-        url: 'https://namixer.com/images/namixer-big-logo.png',
+        url: 'https://i.imgur.com/RDEjmuJ.png',
         width: 2560,
         height: 1440,
         alt: 'Namixer'
