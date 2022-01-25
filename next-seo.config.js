@@ -4,7 +4,7 @@ export default {
     locale: 'en_US',
     url: 'https://namixer.com',
     site_name: 'Namixer',
-    title: 'Namixer',
+    title: 'Namixer - Amazing, unique and catchy domain names.',
     images: [
       {
         url: 'https://i.imgur.com/RDEjmuJ.png',
