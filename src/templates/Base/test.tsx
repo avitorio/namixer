@@ -2,7 +2,7 @@ import { render, screen } from 'utils/test-utils'
 
 import Base from '.'
 
-jest.mock('next-auth/client', () => ({
+jest.mock('next-auth/react', () => ({
   useSession: jest.fn(() => {
     return [{ session: null }]
   })

@@ -3,7 +3,7 @@ import NextNprogress from 'nextjs-progressbar'
 import { DefaultSeo } from 'next-seo'
 import SEO from '../../next-seo.config'
 
-import { Provider as AuthProvider } from 'next-auth/client'
+import { SessionProvider } from 'next-auth/react'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from 'styled-components'
 
@@ -36,7 +36,7 @@ function App({ Component, pageProps }: AppProps) {
   }, [router.events])
 
   return (
-    <AuthProvider session={pageProps.session}>
+    <SessionProvider session={pageProps.session}>
       <ApolloProvider client={client}>
         <ThemeProvider theme={theme}>
           <Head>
@@ -62,7 +62,7 @@ function App({ Component, pageProps }: AppProps) {
           </AppProvider>
         </ThemeProvider>
       </ApolloProvider>
-    </AuthProvider>
+    </SessionProvider>
   )
 }
 

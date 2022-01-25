@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { Session } from 'next-auth'
-import { signOut } from 'next-auth/client'
+import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 
 import Button from 'components/Button'

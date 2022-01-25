@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { socket } from 'config/web-sockets'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 
 import * as S from './styles'
@@ -43,7 +43,8 @@ const HomeTemplate = ({
   initialValues = initialSearchValues
 }: HomeTemplateProps) => {
   const [results, setResults] = useState<SearchResults[]>([])
-  const [session, loading] = useSession()
+  const { data: session, status } = useSession()
+  const loading = status === 'loading'
   const [hasNextPage, setHasNextPage] = useState(false)
   const [searching, setSearching] = useState(false)
   const [values, setValues] = useState<SearchValues>(initialValues)

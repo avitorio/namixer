@@ -1,7 +1,7 @@
 import { Container } from 'components/Container'
 import Footer from 'components/Footer'
 import Menu from 'components/Menu'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 
 import * as S from './styles'
 
@@ -10,7 +10,8 @@ export type BaseTemplateProps = {
 }
 
 const Base = ({ children }: BaseTemplateProps) => {
-  const [session, loading] = useSession()
+  const { data: session, status } = useSession()
+  const loading = status === 'loading'
 
   return (
     <S.Wrapper>

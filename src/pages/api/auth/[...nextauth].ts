@@ -1,28 +1,21 @@
-import NextAuth, { User } from 'next-auth'
-import { Session } from 'next-auth'
-import { JWT } from 'next-auth/jwt'
-import Providers from 'next-auth/providers'
-import { NextApiRequest, NextApiResponse } from 'next-auth/internals/utils'
+import NextAuth, { NextAuthOptions } from 'next-auth'
+import { NextApiRequest, NextApiResponse } from 'next'
+import CredentialsProvider from 'next-auth/providers/credentials'
 
-type AuthorizeProps = {
-  email: string
-  password: string
-}
-
-const options = {
+const options: NextAuthOptions = {
   pages: {
     signIn: '/sign-in'
   },
   providers: [
-    Providers.Credentials({
-      name: 'Sign-in',
+    CredentialsProvider({
+      name: 'Sing-in',
       credentials: {},
-      async authorize({ email, password }: AuthorizeProps) {
+      async authorize(credentials) {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/auth/local`,
           {
             method: 'POST',
-            body: new URLSearchParams({ identifier: email, password })
+            body: new URLSearchParams(credentials)
           }
         )
 
@@ -36,27 +29,32 @@ const options = {
       }
     })
   ],
-  callbacks: {
-    session: async (session: Session, user: User) => {
-      session.jwt = user.jwt
-      session.id = user.id
 
-      return Promise.resolve(session)
-    },
-    jwt: async (token: JWT, user: User) => {
+  callbacks: {
+    jwt: ({ token, user }) => {
+      // first time jwt callback is run, user object is available
       if (user) {
         token.id = user.id
-        token.email = user.email
-        token.name = user.username as string
+        token.name = <string>user.username
         token.jwt = user.jwt
       }
 
-      return Promise.resolve(token)
+      return token
+    },
+    session: ({ session, token }) => {
+      if (token) {
+        session.id = token.id
+        session.jwt = token.jwt
+      }
+
+      return session
     }
+  },
+  secret: `${process.env.NEXTAUTH_JWT}`,
+  jwt: {
+    secret: `${process.env.NEXTAUTH_JWT}`
   }
 }
 
-const Auth = (req: NextApiRequest, res: NextApiResponse) =>
+export default (req: NextApiRequest, res: NextApiResponse) =>
   NextAuth(req, res, options)
-
-export default Auth

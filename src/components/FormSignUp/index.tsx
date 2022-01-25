@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { signIn } from 'next-auth/client'
+import { signIn } from 'next-auth/react'
 import {
   AccountCircle,
   Email,
@@ -32,9 +32,10 @@ const FormSignUp = () => {
           .message
       ),
     onCompleted: () => {
+      console.log(error)
       !error &&
         signIn('credentials', {
-          email: values.email,
+          identifier: values.email,
           password: values.password,
           callbackUrl: '/'
         })

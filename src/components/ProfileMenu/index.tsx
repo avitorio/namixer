@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { signOut } from 'next-auth/client'
+import { signOut } from 'next-auth/react'
 import { AccountCircle, ExitToApp } from '@styled-icons/material-outlined'
 
 import * as S from './styles'

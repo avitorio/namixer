@@ -1,5 +1,5 @@
 import 'server.mock'
-import { signIn } from 'next-auth/client'
+import { signIn } from 'next-auth/react'
 
 import userEvent from '@testing-library/user-event'
 import { render, screen, waitFor } from 'utils/test-utils'
@@ -14,7 +14,7 @@ useRouter.mockImplementation(() => ({
   query
 }))
 
-jest.mock('next-auth/client', () => ({
+jest.mock('next-auth/react', () => ({
   signIn: jest.fn()
 }))
 
