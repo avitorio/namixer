@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { socket } from 'config/web-sockets'
 import { useSession } from 'next-auth/react'
+import Head from 'next/head'
 import Link from 'next/link'
 
 import * as S from './styles'
@@ -176,108 +177,113 @@ const HomeTemplate = ({
   }
 
   return (
-    <Base>
-      <Container>
-        {openAlert && (
-          <Popup setIsOpen={setOpenAlert} isOpen={openAlert}>
-            {registerAlert ? (
-              <>
-                <h1>Thank you for your interest</h1>
-                <p>
-                  Alerts are on the horizon! This feature is in the works.
-                  <br />
-                  We&apos;ll send you a message once it&apos;s ready.
-                </p>
-                <p>
-                  Stay tuned, the perfect domain name will soon be in our
-                  hands...
-                </p>
-              </>
-            ) : (
-              <>
-                <MediaMatch greaterThan="small">
-                  <h1>
-                    We will get you the perfect
-                    <br />{' '}
-                    <span style={{ color: theme.colors.primary }}>
-                      {values.word}
-                    </span>{' '}
-                    domain!
-                  </h1>
-                </MediaMatch>
-                <MediaMatch lessThan="small">
-                  <h2>
-                    Get the perfect
+    <>
+      <Head>
+        <title>Namixer - Amazing, unique and catchy domain names.</title>
+      </Head>
+      <Base>
+        <Container>
+          {openAlert && (
+            <Popup setIsOpen={setOpenAlert} isOpen={openAlert}>
+              {registerAlert ? (
+                <>
+                  <h1>Thank you for your interest</h1>
+                  <p>
+                    Alerts are on the horizon! This feature is in the works.
                     <br />
-                    <span style={{ color: theme.colors.primary }}>
-                      {values.word}
-                    </span>{' '}
-                    domain!
-                  </h2>
-                </MediaMatch>
-                <h3>Snatch premium domains worth thousands of $$$!</h3>
-                <p>
-                  For only <strong>$9/month</strong>, we will monitor every
-                  domain in this list and send you a notification when they
-                  become available.
-                </p>
-                {session?.user?.name ? (
-                  <div>
-                    <Button size="large" onClick={handleCreateAlert}>
-                      Get Daily Alerts!
-                    </Button>
-                  </div>
-                ) : (
-                  <>
-                    <p>You need to be logged in to create an alert.</p>
+                    We&apos;ll send you a message once it&apos;s ready.
+                  </p>
+                  <p>
+                    Stay tuned, the perfect domain name will soon be in our
+                    hands...
+                  </p>
+                </>
+              ) : (
+                <>
+                  <MediaMatch greaterThan="small">
+                    <h1>
+                      We will get you the perfect
+                      <br />{' '}
+                      <span style={{ color: theme.colors.primary }}>
+                        {values.word}
+                      </span>{' '}
+                      domain!
+                    </h1>
+                  </MediaMatch>
+                  <MediaMatch lessThan="small">
+                    <h2>
+                      Get the perfect
+                      <br />
+                      <span style={{ color: theme.colors.primary }}>
+                        {values.word}
+                      </span>{' '}
+                      domain!
+                    </h2>
+                  </MediaMatch>
+                  <h3>Snatch premium domains worth thousands of $$$!</h3>
+                  <p>
+                    For only <strong>$9/month</strong>, we will monitor every
+                    domain in this list and send you a notification when they
+                    become available.
+                  </p>
+                  {session?.user?.name ? (
                     <div>
-                      <Link href="/sign-in" passHref>
-                        <Button as="a" outline>
-                          Log in
-                        </Button>
-                      </Link>{' '}
-                      <Link href="/sign-up" passHref>
-                        <Button as="a">Sign up</Button>
-                      </Link>
+                      <Button size="large" onClick={handleCreateAlert}>
+                        Get Daily Alerts!
+                      </Button>
                     </div>
-                  </>
-                )}
-              </>
-            )}
-          </Popup>
-        )}
-        <S.Wrapper>
-          <S.MainTitle>Not all good domains are taken.</S.MainTitle>
-          <S.OpenParagraph>
-            Enter a keyword, select how you want to mix it and we’ll show you a
-            list of available domains.{' '}
-            <a href="#how-it-works">Learn how it works</a>.
-          </S.OpenParagraph>
-          <DomainSearch
-            searchOptions={searchOptions}
-            onSubmit={onSubmit}
-            searching={searching}
-            values={{ ...values, line: 0 }}
-            setValues={setValues}
-          />
-          <ResultsHeader
-            results={results}
-            setHideTaken={setHideTaken}
-            hideTaken={hideTaken}
-          />
-          <DomainResults
-            results={results}
-            onSubmit={() => onSubmit(values, true)}
-            hasNextPage={hasNextPage}
-            session={session}
-            hideTaken={hideTaken}
-            searching={searching}
-            setOpenAlert={setOpenAlert}
-          />
-        </S.Wrapper>
-      </Container>
-      <HowItWorks />
-    </Base>
+                  ) : (
+                    <>
+                      <p>You need to be logged in to create an alert.</p>
+                      <div>
+                        <Link href="/sign-in" passHref>
+                          <Button as="a" outline>
+                            Log in
+                          </Button>
+                        </Link>{' '}
+                        <Link href="/sign-up" passHref>
+                          <Button as="a">Sign up</Button>
+                        </Link>
+                      </div>
+                    </>
+                  )}
+                </>
+              )}
+            </Popup>
+          )}
+          <S.Wrapper>
+            <S.MainTitle>Not all good domains are taken.</S.MainTitle>
+            <S.OpenParagraph>
+              Enter a keyword, select how you want to mix it and we’ll show you
+              a list of available domains.{' '}
+              <a href="#how-it-works">Learn how it works</a>.
+            </S.OpenParagraph>
+            <DomainSearch
+              searchOptions={searchOptions}
+              onSubmit={onSubmit}
+              searching={searching}
+              values={{ ...values, line: 0 }}
+              setValues={setValues}
+            />
+            <ResultsHeader
+              results={results}
+              setHideTaken={setHideTaken}
+              hideTaken={hideTaken}
+            />
+            <DomainResults
+              results={results}
+              onSubmit={() => onSubmit(values, true)}
+              hasNextPage={hasNextPage}
+              session={session}
+              hideTaken={hideTaken}
+              searching={searching}
+              setOpenAlert={setOpenAlert}
+            />
+          </S.Wrapper>
+        </Container>
+        <HowItWorks />
+      </Base>
+    </>
   )
 }
 
