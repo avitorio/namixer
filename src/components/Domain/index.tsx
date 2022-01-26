@@ -17,9 +17,9 @@ const Domain = ({ domain, status, setOpenAlert }: DomainProps) => {
     appContext.setState({ domain })
 
     event({
-      event: 'sign_up',
+      event: 'domain_register',
       params: {
-        method: 'credentials'
+        domain
       }
     })
 
