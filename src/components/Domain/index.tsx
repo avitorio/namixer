@@ -1,4 +1,3 @@
-import Router from 'next/router'
 import Button from 'components/Button'
 import MediaMatch from 'components/MediaMatch'
 import { SearchResults } from 'templates/Home'
@@ -23,7 +22,9 @@ const Domain = ({ domain, status, setOpenAlert }: DomainProps) => {
       }
     })
 
-    Router.push('/dont-you-forget-about-me')
+    if (typeof window !== 'undefined') {
+      window.open(`/dont-you-forget-about-me?domain=${domain}`)
+    }
   }
 
   return (

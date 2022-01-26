@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import Blog from 'templates/Blog'
-import { useAppContext } from 'utils/appContext'
 import { event } from 'utils/ga'
 
 export default function DontYou() {
-  const { state } = useAppContext()
-  const { domain } = state
+  const { query } = useRouter()
+  const domain = query?.domain ?? 'YourDomain.com'
 
   const handleOutboundLink = (target: HTMLAnchorElement) => {
     event({
