@@ -3,14 +3,15 @@ import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { Email, Lock, ErrorOutline } from '@styled-icons/material-outlined'
-
 import { FormLink, FormWrapper, FormLoading, FormError } from 'components/Form'
 import Button from 'components/Button'
 import TextField from 'components/TextField'
 
+import { Email, Lock, ErrorOutline } from '@styled-icons/material-outlined'
 import * as S from './styles'
+
 import { FieldErrors, signInValidate } from 'utils/validations'
+import { event } from 'utils/ga'
 
 const FormSignIn = () => {
   const [formError, setFormError] = useState('')
@@ -24,8 +25,8 @@ const FormSignIn = () => {
     setValues((s) => ({ ...s, [field]: value }))
   }
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault()
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
     setLoading(true)
 
     const errors = signInValidate(values)
@@ -47,6 +48,13 @@ const FormSignIn = () => {
     })
 
     if (result?.url) {
+      event({
+        event: 'login',
+        params: {
+          method: 'credentials'
+        }
+      })
+
       return push(result?.url)
     }
 

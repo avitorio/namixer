@@ -25,10 +25,11 @@ const FormProfile = ({ email, username, id, session }: FormProfileProps) => {
 
   const handleOutboundLink = (target: HTMLAnchorElement) => {
     event({
-      action: 'outbound_link',
-      category: `footer-social`,
-      label: `${target.getAttribute('data-label')}`,
-      value: 0
+      event: 'link',
+      params: {
+        location: 'footer',
+        link_url: `${target.getAttribute('data-label')}`
+      }
     })
   }
 

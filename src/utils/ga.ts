@@ -5,18 +5,16 @@ export const pageview = (url: URL): void => {
   })
 }
 
+type EventParams = { [key: string]: string | number }
+
 type GTagEvent = {
-  action: string
-  category: string
-  label: string
-  value: number
+  event: string
+  params: EventParams
 }
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
-export const event = ({ action, category, label, value }: GTagEvent): void => {
-  window.gtag('event', action, {
-    event_category: category,
-    event_label: label,
-    value
+export const event = ({ event, params }: GTagEvent): void => {
+  window.gtag('event', event, {
+    ...params
   })
 }

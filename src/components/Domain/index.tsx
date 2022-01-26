@@ -17,10 +17,10 @@ const Domain = ({ domain, status, setOpenAlert }: DomainProps) => {
     appContext.setState({ domain })
 
     event({
-      action: 'click_register',
-      category: 'register',
-      label: domain,
-      value: 0
+      event: 'sign_up',
+      params: {
+        method: 'credentials'
+      }
     })
 
     Router.push('/dont-you-forget-about-me')

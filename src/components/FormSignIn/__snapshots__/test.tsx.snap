@@ -1,12 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FormSignIn /> should render the form 1`] = `
-.c4 {
-  display: inline-block;
-  vertical-align: middle;
-  overflow: hidden;
-}
-
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -127,6 +121,12 @@ exports[`<FormSignIn /> should render the form 1`] = `
 .c9 a:hover {
   color: #df2e46;
   border-bottom: 0.1rem solid #df2e46;
+}
+
+.c4 {
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
 }
 
 .c6 {

@@ -85,11 +85,13 @@ const DomainSearch = ({
 
     if (!hasErrors) {
       event({
-        category: 'Search',
-        action: `${values.type}`,
-        label: `${values.word}`,
-        value: 0
+        event: 'search',
+        params: {
+          search_type: `${values.type}`,
+          keyword: `${values.word}`
+        }
       })
+
       onSubmit(values, fetchMore)
     }
   }

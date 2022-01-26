@@ -10,10 +10,12 @@ export default function DontYou() {
 
   const handleOutboundLink = (target: HTMLAnchorElement) => {
     event({
-      action: 'outbound_link',
-      category: `${target.getAttribute('data-category')}`,
-      label: `${target.getAttribute('data-label')}`,
-      value: 0
+      event: 'link',
+      params: {
+        location: 'dont-you',
+        link_category: `${target.getAttribute('data-category')}`,
+        link_url: `${target.getAttribute('data-label')}`
+      }
     })
   }
 

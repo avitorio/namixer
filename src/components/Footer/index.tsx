@@ -7,10 +7,11 @@ const currentYear = new Date().getFullYear()
 const Footer = () => {
   const handleOutboundLink = (target: HTMLAnchorElement) => {
     event({
-      action: 'outbound_link',
-      category: `footer-social`,
-      label: `${target.getAttribute('data-label')}`,
-      value: 0
+      event: 'link',
+      params: {
+        location: 'footer',
+        link_url: `${target.getAttribute('data-label')}`
+      }
     })
   }
 
